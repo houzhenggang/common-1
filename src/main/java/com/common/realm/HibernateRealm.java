@@ -14,6 +14,9 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.common.dao.UserDAO;
+import com.common.pojo.User;
+
 /**
  * Configured Apache Shiro Realm.
  */
@@ -21,8 +24,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class HibernateRealm extends AuthorizingRealm {
 
-	/*@Autowired
-	protected UserDao userDao;*/
+	@Autowired
+	protected UserDAO userDAO;
 
 	public HibernateRealm() {
 		// This name must match the name in the User class's getPrincipals() method
@@ -39,14 +42,13 @@ public class HibernateRealm extends AuthorizingRealm {
 		// UsernamePasswordToken对象用来存放提交的登录信息
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 		// 查出是否有此用户
-		/*User user = userDao.findUser(token.getUsername());
+		User user = userDAO.selectByUsername(token.getUsername());
 		if (user != null) {
 			// 若存在，将此用户存放到登录认证info中
 			return new SimpleAuthenticationInfo(user.getId(), user.getPassword(), getName());
 		} else {
 			return null;
-		}*/
-		return null;
+		}
 	}
 
 	 /** 
@@ -56,6 +58,7 @@ public class HibernateRealm extends AuthorizingRealm {
 		//获取登录时输入的id
 		Long userId = (Long) principals.fromRealm(getName()).iterator().next();
 		//到数据库查是否有此对象  
+		User user = userDAO.selectByPrimaryKey(userId);
 		/*User user = userDao.getUser(userId);
 		if (user != null) {
 			//权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
