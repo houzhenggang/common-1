@@ -9,24 +9,24 @@ package com.common.pojo;
 
 import com.common.core.model.BaseObject;
 
-public class RolePermissions extends BaseObject{
+public class RolePermission extends BaseObject{
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	//角色ID
-    private Long rolesId;
+    private Long roleId;
 
     //权限表达式
     private String element;
 
-    public Long getRolesId() {
-        return rolesId;
+    public Long getRoleId() {
+        return roleId;
     }
 
-    public void setRolesId(Long rolesId) {
-        this.rolesId = rolesId;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     public String getElement() {

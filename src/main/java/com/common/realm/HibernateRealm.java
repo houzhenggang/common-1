@@ -1,5 +1,7 @@
 package com.common.realm;
 
+import java.util.List;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -14,7 +16,10 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.common.dao.RolePermissionDAO;
 import com.common.dao.UserDAO;
+import com.common.dao.UserRoleDAO;
+import com.common.pojo.Role;
 import com.common.pojo.User;
 
 /**
@@ -25,7 +30,13 @@ import com.common.pojo.User;
 public class HibernateRealm extends AuthorizingRealm {
 
 	@Autowired
-	protected UserDAO userDAO;
+	private UserDAO userDAO;
+	
+	@Autowired
+	private UserRoleDAO userRoleDAO;
+	
+	@Autowired
+	private RolePermissionDAO rolePermissionDAO;
 
 	public HibernateRealm() {
 		// This name must match the name in the User class's getPrincipals() method
@@ -59,19 +70,22 @@ public class HibernateRealm extends AuthorizingRealm {
 		Long userId = (Long) principals.fromRealm(getName()).iterator().next();
 		//到数据库查是否有此对象  
 		User user = userDAO.selectByPrimaryKey(userId);
-		/*User user = userDao.getUser(userId);
 		if (user != null) {
 			//权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
 			SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-			for (Role role : user.getRoles()) {
-				info.addRole(role.getName());
-				info.addStringPermissions(role.getPermissions());
+			List<Role> list = userRoleDAO.selectRolesByUserId(userId);
+			if (list != null && !list.isEmpty()) {
+				for (Role role : list) {
+					info.addRole(role.getName());
+					info.addStringPermissions(rolePermissionDAO.selectPermissionsByRoleId(role.getId()));
+				}
+				return info;
+			} else {
+				return null;
 			}
-			return info;
 		} else {
 			return null;
-		}*/
-		return null;
+		}
 	}
 
 }

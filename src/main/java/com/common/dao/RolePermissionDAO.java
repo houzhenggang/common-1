@@ -7,13 +7,17 @@
 */
 package com.common.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
-import com.common.pojo.RolePermissions;
+import com.common.pojo.RolePermission;
 
 @Repository
-public interface RolePermissionsDAO {
-    int insert(RolePermissions record);
+public interface RolePermissionDAO {
+    int insert(RolePermission record);
 
-    int insertSelective(RolePermissions record);
+    int insertSelective(RolePermission record);
+    
+    List<String> selectPermissionsByRoleId(Long roleId);
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.dao.RolePermissionDAO" >
+  <resultMap id="BaseResultMap" type="com.common.pojo.RolePermission" >
+    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="element" property="element" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.common.pojo.RolePermission" >
+    insert into roles_permissions (role_id, element)
+    values (#{roleId,jdbcType=BIGINT}, #{element,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.pojo.RolePermission" >
+    insert into roles_permissions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="element != null" >
+        element,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="element != null" >
+        #{element,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="selectPermissionsByRoleId" parameterType="java.lang.Long" >
+	SELECT DISTINCT(element) FROM roles_permissions WHERE role_id = #{roleId,jdbcType=BIGINT}
+  </select>
+  
+</mapper>
