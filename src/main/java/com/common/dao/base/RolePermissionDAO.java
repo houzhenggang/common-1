@@ -5,13 +5,13 @@
  * 
  * 著作权人保留一切权利，任何使用需经授权。
 */
-package com.common.dao;
+package com.common.dao.base;
 
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.common.pojo.RolePermission;
+import com.common.pojo.base.RolePermission;
 
 @Repository
 public interface RolePermissionDAO {

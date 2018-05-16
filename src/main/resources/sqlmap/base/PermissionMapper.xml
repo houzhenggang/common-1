@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.common.dao.PermissionDAO" >
-  <resultMap id="BaseResultMap" type="com.common.pojo.Permission" >
+<mapper namespace="com.common.dao.base.PermissionDAO" >
+  <resultMap id="BaseResultMap" type="com.common.pojo.base.Permission" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="parentId" property="parentid" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -21,13 +21,13 @@
     delete from permissions
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.common.pojo.Permission" >
+  <insert id="insert" parameterType="com.common.pojo.base.Permission" >
     insert into permissions (id, parentId, name, 
       element, description)
     values (#{id,jdbcType=INTEGER}, #{parentid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{element,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.common.pojo.Permission" >
+  <insert id="insertSelective" parameterType="com.common.pojo.base.Permission" >
     insert into permissions
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.common.pojo.Permission" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.pojo.base.Permission" >
     update permissions
     <set >
       <if test="parentid != null" >
@@ -82,7 +82,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.common.pojo.Permission" >
+  <update id="updateByPrimaryKey" parameterType="com.common.pojo.base.Permission" >
     update permissions
     set parentId = #{parentid,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},

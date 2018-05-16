@@ -5,11 +5,11 @@
  * 
  * 著作权人保留一切权利，任何使用需经授权。
 */
-package com.common.dao;
+package com.common.dao.base;
 
 import org.springframework.stereotype.Repository;
 
-import com.common.pojo.Role;
+import com.common.pojo.base.Role;
 
 @Repository
 public interface RoleDAO {

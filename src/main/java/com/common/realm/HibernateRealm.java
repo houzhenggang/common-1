@@ -16,11 +16,11 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.common.dao.RolePermissionDAO;
-import com.common.dao.UserDAO;
-import com.common.dao.UserRoleDAO;
-import com.common.pojo.Role;
-import com.common.pojo.User;
+import com.common.dao.base.RolePermissionDAO;
+import com.common.dao.base.UserDAO;
+import com.common.dao.base.UserRoleDAO;
+import com.common.pojo.base.Role;
+import com.common.pojo.base.User;
 
 /**
  * Configured Apache Shiro Realm.

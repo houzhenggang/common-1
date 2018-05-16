@@ -5,7 +5,7 @@
  * 
  * 著作权人保留一切权利，任何使用需经授权。
 */
-package com.common.pojo;
+package com.common.pojo.base;
 
 import com.common.core.model.BaseObject;
 
