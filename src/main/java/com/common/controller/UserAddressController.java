@@ -131,4 +131,24 @@ public class UserAddressController extends BaseController{
         return response;
 	}
 	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+    @ResponseBody
+	public ResponseDTO<UserAddress> selectBy(){
+		UserAddressDTO dto = new UserAddressDTO();
+		dto.setId(1L);
+		logger.info("调用[查询地址详情]服务APP接口--Start,入参：{}", dto);
+		ResponseDTO<UserAddress> response = new ResponseDTO<UserAddress>();
+		try {
+			response = userAddressService.selectById(dto);
+		} catch (BussinessException e) {
+            logger.error("[查询地址详情]业务异常：{}", e); 
+            response.setException(e);
+        } catch (Exception e) {
+            logger.error("[查询地址详情]系统异常：{}", e); 
+            ResponseUtils.failed(response);
+        }
+        logger.info("调用[查询地址详情]服务APP接口--end,结果：{}", response);
+        return response;
+	}
+	
 }
