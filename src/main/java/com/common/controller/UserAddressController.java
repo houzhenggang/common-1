@@ -33,7 +33,7 @@ import com.common.util.ResponseUtils;
  * 
  */
 @Controller
-@RequestMapping("/api/user")
+@RequestMapping("/api")
 public class UserAddressController extends BaseController{
 	
 	@Autowired
