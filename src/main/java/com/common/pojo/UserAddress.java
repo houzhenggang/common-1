@@ -7,147 +7,154 @@
 */
 package com.common.pojo;
 
-public class UserAddress {
-    //数据自增ID
-    private Long id;
+import com.common.core.model.BaseObject;
 
-    //用户token
-    private String token;
+public class UserAddress extends BaseObject {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    //省份id
-    private Integer provinceId;
+	// 数据自增ID
+	private Long id;
 
-    //省份名称
-    private String provinceName;
+	// 用户token
+	private String token;
 
-    //城市id
-    private Integer cityId;
+	// 省份id
+	private Integer provinceId;
 
-    //城市名称
-    private String cityName;
+	// 省份名称
+	private String provinceName;
 
-    //地区id
-    private Integer districtId;
+	// 城市id
+	private Integer cityId;
 
-    //地区名称
-    private String districtName;
+	// 城市名称
+	private String cityName;
 
-    //详细地址
-    private String address;
+	// 地区id
+	private Integer districtId;
 
-    //联系人
-    private String linkMan;
+	// 地区名称
+	private String districtName;
 
-    //联系电话
-    private String mobile;
+	// 详细地址
+	private String address;
 
-    //邮政编码
-    private String code;
+	// 联系人
+	private String linkMan;
 
-    //是否默认 1是 0否
-    private Integer isDefault;
+	// 联系电话
+	private String mobile;
 
-    public Long getId() {
-        return id;
-    }
+	// 邮政编码
+	private String code;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	// 是否默认 1是 0否
+	private Integer isDefault;
 
-    public String getToken() {
-        return token;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setToken(String token) {
-        this.token = token == null ? null : token.trim();
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public Integer getProvinceId() {
-        return provinceId;
-    }
+	public String getToken() {
+		return token;
+	}
 
-    public void setProvinceId(Integer provinceId) {
-        this.provinceId = provinceId;
-    }
+	public void setToken(String token) {
+		this.token = token == null ? null : token.trim();
+	}
 
-    public String getProvinceName() {
-        return provinceName;
-    }
+	public Integer getProvinceId() {
+		return provinceId;
+	}
 
-    public void setProvinceName(String provinceName) {
-        this.provinceName = provinceName == null ? null : provinceName.trim();
-    }
+	public void setProvinceId(Integer provinceId) {
+		this.provinceId = provinceId;
+	}
 
-    public Integer getCityId() {
-        return cityId;
-    }
+	public String getProvinceName() {
+		return provinceName;
+	}
 
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
-    }
+	public void setProvinceName(String provinceName) {
+		this.provinceName = provinceName == null ? null : provinceName.trim();
+	}
 
-    public String getCityName() {
-        return cityName;
-    }
+	public Integer getCityId() {
+		return cityId;
+	}
 
-    public void setCityName(String cityName) {
-        this.cityName = cityName == null ? null : cityName.trim();
-    }
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
 
-    public Integer getDistrictId() {
-        return districtId;
-    }
+	public String getCityName() {
+		return cityName;
+	}
 
-    public void setDistrictId(Integer districtId) {
-        this.districtId = districtId;
-    }
+	public void setCityName(String cityName) {
+		this.cityName = cityName == null ? null : cityName.trim();
+	}
 
-    public String getDistrictName() {
-        return districtName;
-    }
+	public Integer getDistrictId() {
+		return districtId;
+	}
 
-    public void setDistrictName(String districtName) {
-        this.districtName = districtName == null ? null : districtName.trim();
-    }
+	public void setDistrictId(Integer districtId) {
+		this.districtId = districtId;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public String getDistrictName() {
+		return districtName;
+	}
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
+	public void setDistrictName(String districtName) {
+		this.districtName = districtName == null ? null : districtName.trim();
+	}
 
-    public String getLinkMan() {
-        return linkMan;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public void setLinkMan(String linkMan) {
-        this.linkMan = linkMan == null ? null : linkMan.trim();
-    }
+	public void setAddress(String address) {
+		this.address = address == null ? null : address.trim();
+	}
 
-    public String getMobile() {
-        return mobile;
-    }
+	public String getLinkMan() {
+		return linkMan;
+	}
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
-    }
+	public void setLinkMan(String linkMan) {
+		this.linkMan = linkMan == null ? null : linkMan.trim();
+	}
 
-    public String getCode() {
-        return code;
-    }
+	public String getMobile() {
+		return mobile;
+	}
 
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
-    }
+	public void setMobile(String mobile) {
+		this.mobile = mobile == null ? null : mobile.trim();
+	}
 
-    public Integer getIsDefault() {
-        return isDefault;
-    }
+	public String getCode() {
+		return code;
+	}
 
-    public void setIsDefault(Integer isDefault) {
-        this.isDefault = isDefault;
-    }
+	public void setCode(String code) {
+		this.code = code == null ? null : code.trim();
+	}
+
+	public Integer getIsDefault() {
+		return isDefault;
+	}
+
+	public void setIsDefault(Integer isDefault) {
+		this.isDefault = isDefault;
+	}
 }

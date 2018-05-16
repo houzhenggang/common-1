@@ -42,7 +42,7 @@
       #{linkMan,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
       #{isDefault,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.common.pojo.UserAddress" >
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.common.pojo.UserAddress" >
     insert into user_address
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
