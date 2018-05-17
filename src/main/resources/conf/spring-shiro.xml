@@ -40,7 +40,7 @@
         <property name="filterChainDefinitions">
             <value>
                 /user/login = anon
-                /api/** = anon
+                /app/** = anon
                 /swagger/** = anon
                 /** = authc
             </value>
