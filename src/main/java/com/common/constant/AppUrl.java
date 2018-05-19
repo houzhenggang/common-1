@@ -23,4 +23,8 @@ public interface AppUrl {
 	String USER_ADDRESS_UPDATE = "/userAddress/update"; //用户地址修改
 	String USER_ADDRESS_DELETE = "/userAddress/delete"; //用户地址删除
 	
+	/***************************** 类型  **********************************/
+	String CATEGORY_SELECT_ALL = "/category/selectAll"; //查询所有类型
+	
+	
 }

@@ -43,8 +43,10 @@
     <!-- 解除servlet对静态资源文件访问的限制，使得静态资源先经过 -->
     <mvc:default-servlet-handler/>
     
-    <!-- 所有swagger目录的访问，直接访问location指定的目录 -->
-	<mvc:resources mapping="/swagger/**" location="/WEB-INF/swagger/"/>
+    <!-- 所有静态资源文件目录的访问，直接访问location指定的目录  但必须在webapp下面   
+    	有了上面那句话    <mvc:default-servlet-handler/> 下面则可以省略 -->
+	<!-- <mvc:resources mapping="/swagger/**" location="/swagger/"/> -->
+	<!-- <mvc:resources mapping="/background/**" location="/background/"/> -->
     
     <!-- 定义跳转的文件的前后缀 ，视图模式配置-->  
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  

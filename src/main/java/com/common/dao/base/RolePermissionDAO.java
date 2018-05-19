@@ -20,4 +20,7 @@ public interface RolePermissionDAO {
     int insertSelective(RolePermission record);
     
     List<String> selectPermissionsByRoleId(Long roleId);
+    
+    void deletePermissionsByRoleId(Long roleId);
+    
 }

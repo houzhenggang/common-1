@@ -7,6 +7,8 @@
 */
 package com.common.dao.base;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.common.pojo.base.User;
@@ -26,4 +28,6 @@ public interface UserDAO {
     int updateByPrimaryKey(User record);
     
     User selectByUsername(String username);
+    
+    List<User> getAllUser();
 }

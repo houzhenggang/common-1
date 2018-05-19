@@ -7,6 +7,8 @@
 */
 package com.common.dao.base;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.common.pojo.base.Permission;
@@ -24,4 +26,8 @@ public interface PermissionDAO {
     int updateByPrimaryKeySelective(Permission record);
 
     int updateByPrimaryKey(Permission record);
+    
+    List<Permission> getAllPermission();
+    
+    List<Permission> getParentPermission();
 }

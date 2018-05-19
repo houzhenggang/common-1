@@ -23,4 +23,8 @@ public interface UserRoleDAO {
     int insertSelective(UserRole record);
     
     List<Role> selectRolesByUserId(Long userId);
+    
+    List<Long> selectRoleIdsByUserId(Long userId);
+    
+    void deleteRoleIdsByUserId(Long userId);
 }

@@ -32,5 +32,9 @@
   <select id="selectPermissionsByRoleId" parameterType="java.lang.Long" >
 	SELECT DISTINCT(element) FROM roles_permissions WHERE role_id = #{roleId,jdbcType=BIGINT}
   </select>
+
+  <select id="deletePermissionsByRoleId" parameterType="java.lang.Long" >
+	delete FROM roles_permissions WHERE role_id = #{roleId,jdbcType=BIGINT}
+  </select>
   
 </mapper>

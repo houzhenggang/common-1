@@ -5,7 +5,7 @@
  * 
  * 著作权人保留一切权利，任何使用需经授权。
  */
-package com.common.service;
+package com.common.service.app;
 
 import com.common.core.dto.ResponseDTO;
 import com.common.dto.UserAddressDTO;

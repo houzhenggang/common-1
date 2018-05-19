@@ -5,7 +5,7 @@
  * 
  * 著作权人保留一切权利，任何使用需经授权。
  */
-package com.common.service.impl;
+package com.common.service.app.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import com.common.core.dto.ResponseDTO;
 import com.common.dao.UserAddressDAO;
 import com.common.dto.UserAddressDTO;
 import com.common.pojo.UserAddress;
-import com.common.service.UserAddressService;
+import com.common.service.app.UserAddressService;
 import com.common.util.Assert;
 import com.common.util.ResponseUtils;
 

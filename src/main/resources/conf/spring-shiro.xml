@@ -24,7 +24,7 @@
          PropertiesPlaceholderConfigurer and abstract beans or anything else we might need: -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-        <property name="loginUrl" value="/user/login"/>
+        <property name="loginUrl" value="/base/user/login"/>
         <property name="successUrl" value="/user/home"/>
         <property name="unauthorizedUrl" value="/user/unauthorized"/>
         <!-- The 'filters' property is usually not necessary unless performing an override, which we
@@ -39,9 +39,11 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
-                /user/login = anon
-                /app/** = anon
-                /swagger/** = anon
+                /base/user/login = anon      <!-- 登录入口载入 -->
+                /app/** = anon               <!-- app接口载入 -->
+                /servlet/** = anon           <!-- 图片servlet载入 -->
+                /swagger/** = anon           <!-- swagger插件资源载入 -->
+                /background/** = anon        <!-- 后端页面资源载入 -->
                 /** = authc
             </value>
         </property>

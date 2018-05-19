@@ -90,4 +90,17 @@
       description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="getAllPermission" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from permissions
+  </select>   
+
+  <select id="getParentPermission" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from permissions where parentId = 0
+  </select> 
+  
 </mapper>

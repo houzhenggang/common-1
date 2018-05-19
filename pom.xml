@@ -242,7 +242,14 @@
 		    <artifactId>shiro-spring</artifactId>  
 		    <version>${shiro.version}</version>  
 		</dependency> 
-
+		<!-- 本地包依赖 -->
+		<dependency>  
+		    <groupId>opencv</groupId>  
+		    <artifactId>opencv</artifactId>  
+		    <version>3.1.0</version>  
+		    <scope>system</scope>  
+		    <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/opencv-310.jar</systemPath>  
+		</dependency>
 
     </dependencies>  
     

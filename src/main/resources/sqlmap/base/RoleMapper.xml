@@ -25,7 +25,7 @@
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.common.pojo.base.Role" >
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.common.pojo.base.Role" >
     insert into roles
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -68,4 +68,11 @@
       description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+  <select id="getAllRole" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from roles
+  </select>   
+  
 </mapper>

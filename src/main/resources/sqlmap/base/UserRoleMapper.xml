@@ -47,4 +47,12 @@
 	WHERE ur.user_id = #{userId,jdbcType=BIGINT}
   </select>
   
+  <select id="selectRoleIdsByUserId" parameterType="java.lang.Long" >
+	SELECT role_id FROM users_roles WHERE user_id = #{userId,jdbcType=BIGINT}
+  </select>
+
+  <select id="deleteRoleIdsByUserId" parameterType="java.lang.Long" >
+	delete FROM users_roles WHERE user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  
 </mapper>
