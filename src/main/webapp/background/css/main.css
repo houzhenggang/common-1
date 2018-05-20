@@ -1162,6 +1162,20 @@ select,option,textarea{
     text-align: center;
 }
 
+.alert-content-msg{
+    padding: 20px;
+    border-radius: 3px;
+    background-color:#3e730c;
+    position: absolute;
+    width: 15%;
+    top:45%;
+    left:0;
+    right: 0;
+    margin: auto;
+    color: #fff;
+    text-align: center;
+}
+
 .member-content-tbody a, .order-content-tbody a, .order-money-tbody a{
     display: block;
     background-color: #007aff;

@@ -3,10 +3,10 @@
  */
 
 /**
- * 2秒后自动关闭提示信息
+ * 1.6秒后自动关闭提示信息
  */
 $(document).ready(function() {
-	setTimeout("$('.alert-mask').fadeTo(300,0).slideUp();",2000); 
+	setTimeout("$('.alert-mask').fadeTo(300,0).slideUp();", 1600); 
 });
 
 function getQueryString(name) {

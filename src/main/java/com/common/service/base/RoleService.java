@@ -25,14 +25,18 @@ public interface RoleService {
 
 	Role getRole(Long roleId);
 
-	int createRole(RoleCommand roleCommand);
+	Long createRole(RoleCommand roleCommand);
 
-	int deleteRole(Long roleId);
+	Long deleteRole(Long roleId);
 
-	int updateRole(Role role, RoleCommand roleCommand);
+	Long updateRole(Role role, RoleCommand roleCommand);
 
-	int initAdminRole(User user, Set<String> permissions);
+	Long initAdminRole(User user, Set<String> permissions);
 
+	List<Role> selectRolesByUserId(Long userId);
+	
 	List<Role> getAllRole();
+	
+	int countUserIdsByRoleId(Long roleId);
 
 }

@@ -53,7 +53,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int createUser(UserCommand command) {
+	public User selectByUsername(String username) {
+		return userDAO.selectByUsername(username);
+	}
+	
+	@Override
+	public Long createUser(UserCommand command) {
 		User user = new User();
 		user.setUsername(command.getUsername());
 		user.setEmail(command.getEmail());
@@ -68,29 +73,31 @@ public class UserServiceImpl implements UserService {
 				userRole.setRoleId(Long.parseLong(roleId));
 				userRoleDAO.insertSelective(userRole);
 			}
-			return 1;
+			return 1L;
 		} else {
-			return 0;
+			return 0L;
 		}
 	}
 
 	@Override
-	public int deleteUser(Long userId) {
+	public Long deleteUser(Long userId) {
 		int result = userDAO.deleteByPrimaryKey(userId);
 		if (result == 1) {
 			//清理权限
 			userRoleDAO.deleteRoleIdsByUserId(userId);
-			return 1;
+			return 1L;
 		} else {
-			return 0;
+			return 0L;
 		}
 	}
 
 	@Override
-	public int updateUser(User user, UserCommand command) {
+	public Long updateUser(User user, UserCommand command) {
 		user.setUsername(command.getUsername());
 		user.setEmail(command.getEmail());
-		user.setPassword(new Sha256Hash(command.getPassword()).toHex());
+		if (command.getPassword() != null && !"".equals(command.getPassword())) {
+			user.setPassword(new Sha256Hash(command.getPassword()).toHex());
+		}
 		int result = userDAO.updateByPrimaryKeySelective(user);
 		if (result == 1) {
 			//清理权限
@@ -104,9 +111,9 @@ public class UserServiceImpl implements UserService {
 				userRole.setRoleId(Long.parseLong(roleId));
 				userRoleDAO.insertSelective(userRole);
 			}
-			return 1;
+			return 1L;
 		} else {
-			return 0;
+			return 0L;
 		}
 	}
 

@@ -27,4 +27,6 @@ public interface UserRoleDAO {
     List<Long> selectRoleIdsByUserId(Long userId);
     
     void deleteRoleIdsByUserId(Long userId);
+    
+    int countUserIdsByRoleId(Long roleId);
 }

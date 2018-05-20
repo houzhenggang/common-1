@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.common.command.PermissionCommand;
 import com.common.dao.base.PermissionDAO;
+import com.common.dao.base.RolePermissionDAO;
 import com.common.pojo.base.Permission;
 import com.common.service.base.PermissionService;
 
@@ -31,6 +32,8 @@ public class PermissionServiceImpl implements PermissionService {
 	@Autowired
 	private PermissionDAO permissionDAO;
 	
+	@Autowired
+	private RolePermissionDAO rolePermissionDAO;
 	
 	@Override
 	public Permission getPermission(int permissionId) {
@@ -84,6 +87,11 @@ public class PermissionServiceImpl implements PermissionService {
 	@Override
 	public List<Permission> getParentPermission() {
 		return permissionDAO.getParentPermission();
+	}
+
+	@Override
+	public List<String> selectPermissionsByRoleId(Long roleId) {
+		return rolePermissionDAO.selectPermissionsByRoleId(roleId);
 	}
 
 }

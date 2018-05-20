@@ -42,7 +42,7 @@ public class LoginController extends BaseController{
 	
 	@RequestMapping(value = BaseUrl.USER_LOGIN, method = RequestMethod.POST)
 	public String login(Model model, HttpServletRequest request , @ModelAttribute LoginCommand command) {
-		logger.info("调用[用户登录接口]服务WEB后台接口--Start,入参：{}", command);
+		logger.info("调用[用户登录接口]服务WEB后台接口,入参：{}", command);
 		HttpSession session = request.getSession();
 		if (command.getUsername() == null || "".equals(command.getUsername().trim())) {
 			model.addAttribute("error", "用户名不能为空！");

@@ -50,7 +50,7 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public int createRole(RoleCommand roleCommand) {
+	public Long createRole(RoleCommand roleCommand) {
 		Role role = new Role();
 		role.setName(roleCommand.getName());
 		role.setDescription(roleCommand.getDescription());
@@ -64,26 +64,26 @@ public class RoleServiceImpl implements RoleService {
 				rolePermission.setElement(element);
 				rolePermissionDAO.insertSelective(rolePermission);
 			}
-			return 1;
+			return 1L;
 		} else {
-			return 0;
+			return 0L;
 		}
 	}
 
 	@Override
-	public int deleteRole(Long roleId) {
+	public Long deleteRole(Long roleId) {
 		int result = roleDAO.deleteByPrimaryKey(roleId);
 		if (result == 1) {
 			//清理权限
 			rolePermissionDAO.deletePermissionsByRoleId(roleId);
-			return 1;
+			return 1L;
 		} else {
-			return 0;
+			return 0L;
 		}
 	}
 
 	@Override
-	public int updateRole(Role role, RoleCommand roleCommand) {
+	public Long updateRole(Role role, RoleCommand roleCommand) {
 		role.setName(roleCommand.getName());
 		role.setDescription(roleCommand.getDescription());
 		int result = roleDAO.updateByPrimaryKeySelective(role);
@@ -99,14 +99,14 @@ public class RoleServiceImpl implements RoleService {
 				rolePermission.setElement(element);
 				rolePermissionDAO.insertSelective(rolePermission);
 			}
-			return 1;
+			return 1L;
 		} else {
-			return 0;
+			return 0L;
 		}
 	}
 
 	@Override
-	public int initAdminRole(User user, Set<String> permissions) {
+	public Long initAdminRole(User user, Set<String> permissions) {
 		List<Long> list = userRoleDAO.selectRoleIdsByUserId(user.getId());
 		if (list != null && !list.isEmpty()) {
 			// 拥有超级管理员1L的角色才可以进行初始化
@@ -121,15 +121,25 @@ public class RoleServiceImpl implements RoleService {
 					rolePermission.setElement(element);
 					rolePermissionDAO.insertSelective(rolePermission);
 				}
-				return 1;
+				return 1L;
 			}
 		}
-		return 0;
+		return 0L;
 	}
 
+	@Override
+	public List<Role> selectRolesByUserId(Long userId) {
+		return userRoleDAO.selectRolesByUserId(userId);
+	}
+	
 	@Override
 	public List<Role> getAllRole() {
 		return roleDAO.getAllRole();
 	}
 
+	@Override
+	public int countUserIdsByRoleId(Long roleId) {
+		return userRoleDAO.countUserIdsByRoleId(roleId);
+	}
+	
 }

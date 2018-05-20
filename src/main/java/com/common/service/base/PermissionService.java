@@ -34,5 +34,7 @@ public interface PermissionService {
     List<Permission> getAllPermission();
     
     List<Permission> getParentPermission();
+    
+    List<String> selectPermissionsByRoleId(Long roleId);
 	
 }

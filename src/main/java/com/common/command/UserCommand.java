@@ -9,6 +9,9 @@ public class UserCommand extends BaseObject{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	//用户ID
+    private Long userId;
+    
 	//用户名称
     private String username;
 
@@ -20,6 +23,14 @@ public class UserCommand extends BaseObject{
 
     //关联角色IDs
 	private String roleIds;
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
 	public String getRoleIds() {
 		return roleIds;

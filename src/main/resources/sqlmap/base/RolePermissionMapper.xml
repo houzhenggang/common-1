@@ -29,7 +29,7 @@
     </trim>
   </insert>
   
-  <select id="selectPermissionsByRoleId" parameterType="java.lang.Long" >
+  <select id="selectPermissionsByRoleId" parameterType="java.lang.Long" resultType="java.lang.String">
 	SELECT DISTINCT(element) FROM roles_permissions WHERE role_id = #{roleId,jdbcType=BIGINT}
   </select>
 

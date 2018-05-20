@@ -54,5 +54,9 @@
   <select id="deleteRoleIdsByUserId" parameterType="java.lang.Long" >
 	delete FROM users_roles WHERE user_id = #{userId,jdbcType=BIGINT}
   </select>
+
+  <select id="countUserIdsByRoleId" resultType="java.lang.Integer" parameterType="java.lang.Long">
+	select count(*) from users_roles where role_id = #{roleId,jdbcType=BIGINT}
+  </select>
   
 </mapper>

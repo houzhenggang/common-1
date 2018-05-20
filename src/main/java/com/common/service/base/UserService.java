@@ -26,11 +26,13 @@ public interface UserService {
 	
 	User getUser(Long userId);
 	
-	int createUser(UserCommand command);
+	User selectByUsername(String username);
+	
+	Long createUser(UserCommand command);
 
-    int deleteUser(Long userId);
+	Long deleteUser(Long userId);
 
-    int updateUser(User user, UserCommand command);
+	Long updateUser(User user, UserCommand command);
     
     List<User> getAllUser();
 	
