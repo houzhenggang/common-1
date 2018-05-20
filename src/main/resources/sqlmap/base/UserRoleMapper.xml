@@ -47,7 +47,7 @@
 	WHERE ur.user_id = #{userId,jdbcType=BIGINT}
   </select>
   
-  <select id="selectRoleIdsByUserId" parameterType="java.lang.Long" >
+  <select id="selectRoleIdsByUserId" parameterType="java.lang.Long" resultType="java.lang.Long">
 	SELECT role_id FROM users_roles WHERE user_id = #{userId,jdbcType=BIGINT}
   </select>
 

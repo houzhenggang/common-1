@@ -252,7 +252,7 @@ public class UserController extends BaseController{
 	@RequestMapping(value = BaseUrl.USER_EDIT, method = RequestMethod.POST)
 	@RequiresPermissions("user:edit")
 	public String edit(Model model, @PathVariable Long id, @ModelAttribute UserCommand userCommand) {
-		logger.info("调用[修改新增接口]服务WEB后台接口,入参：{}", userCommand);
+		logger.info("调用[用户修改接口]服务WEB后台接口,入参id：{}，参数为：{}", id, userCommand);
 		if(userCommand.getUsername() == null || "".equals(userCommand.getUsername().trim())){
     		model.addAttribute("error", "用户名不能为空,已恢复至修改之前状态！");
     		return editForm(model, id , userCommand);

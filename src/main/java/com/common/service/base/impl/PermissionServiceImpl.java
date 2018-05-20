@@ -8,6 +8,7 @@
 package com.common.service.base.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,10 @@ import org.springframework.stereotype.Service;
 import com.common.command.PermissionCommand;
 import com.common.dao.base.PermissionDAO;
 import com.common.dao.base.RolePermissionDAO;
+import com.common.dao.base.UserRoleDAO;
 import com.common.pojo.base.Permission;
+import com.common.pojo.base.RolePermission;
+import com.common.pojo.base.User;
 import com.common.service.base.PermissionService;
 
 /**
@@ -29,11 +33,16 @@ import com.common.service.base.PermissionService;
 @Service
 public class PermissionServiceImpl implements PermissionService {
 
+	private static final Long ADMIN_ID = 1L;
+	
 	@Autowired
 	private PermissionDAO permissionDAO;
 	
 	@Autowired
 	private RolePermissionDAO rolePermissionDAO;
+	
+	@Autowired
+	private UserRoleDAO userRoleDAO;
 	
 	@Override
 	public Permission getPermission(int permissionId) {
@@ -94,4 +103,26 @@ public class PermissionServiceImpl implements PermissionService {
 		return rolePermissionDAO.selectPermissionsByRoleId(roleId);
 	}
 
+	@Override
+	public Long initAdminRole(User user, Set<String> permissions) {
+		List<Long> list = userRoleDAO.selectRoleIdsByUserId(user.getId());
+		if (list != null && !list.isEmpty()) {
+			// 拥有超级管理员1L的角色才可以进行初始化
+			if (list.contains(ADMIN_ID)) {
+				//首先清理权限
+				rolePermissionDAO.deletePermissionsByRoleId(ADMIN_ID);
+				//重新赋予权限
+				RolePermission rolePermission = null;
+				for (String element : permissions) {
+					rolePermission = new RolePermission();
+					rolePermission.setRoleId(ADMIN_ID);
+					rolePermission.setElement(element);
+					rolePermissionDAO.insertSelective(rolePermission);
+				}
+				return 1L;
+			}
+		}
+		return 0L;
+	}
+	
 }

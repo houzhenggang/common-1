@@ -100,7 +100,7 @@
   <select id="getParentPermission" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from permissions where parentId = 0
+    from permissions where (parentId = 0 or parentId = 1)
   </select> 
   
 </mapper>

@@ -8,11 +8,9 @@
 package com.common.service.base;
 
 import java.util.List;
-import java.util.Set;
 
 import com.common.command.RoleCommand;
 import com.common.pojo.base.Role;
-import com.common.pojo.base.User;
 
 /**
  *
@@ -30,8 +28,6 @@ public interface RoleService {
 	Long deleteRole(Long roleId);
 
 	Long updateRole(Role role, RoleCommand roleCommand);
-
-	Long initAdminRole(User user, Set<String> permissions);
 
 	List<Role> selectRolesByUserId(Long userId);
 	

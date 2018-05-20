@@ -37,6 +37,12 @@ public interface BaseUrl {
 	String ROLE_VIEW = "/role/view/{id}"; //查看角色
 	String ROLE_DELETE = "/role/delete/{id}"; //删除角色
 	
-	
+	/***************************** 权限模块  **********************************/
+	String PERMISSION_LIST = "/permission/list"; //权限列表
+	String PERMISSION_ADD = "/permission/add"; //新增权限
+	String PERMISSION_EDIT = "/permission/edit/{id}"; //编辑权限
+	String PERMISSION_VIEW = "/permission/view/{id}"; //查看权限
+	String PERMISSION_DELETE = "/permission/delete/{id}"; //删除权限
+	String PERMISSION_INIT_ADMIN = "/permission/initAdmin"; //权限初始化
 	
 }

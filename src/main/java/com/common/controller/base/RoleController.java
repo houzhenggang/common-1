@@ -61,7 +61,7 @@ public class RoleController extends BaseController{
      */
     @RequestMapping(value = BaseUrl.ROLE_LIST)
     @RequiresPermissions("role:manage")
-    public String manageRoles(Model model, HttpServletRequest request) {
+    public String list(Model model, HttpServletRequest request) {
     	List<Role> listRole = roleService.getAllRole();
     	HttpSession session = request.getSession();
     	session.setAttribute("listRole", listRole);
@@ -211,7 +211,7 @@ public class RoleController extends BaseController{
 	 */
 	 @RequestMapping(value = BaseUrl.ROLE_EDIT, method= RequestMethod.POST)
      @RequiresPermissions("role:edit")
-     public String editRole(Model model, @PathVariable Long id, @ModelAttribute RoleCommand roleCommand) {
+     public String edit(Model model, @PathVariable Long id, @ModelAttribute RoleCommand roleCommand) {
 		 logger.info("调用[角色修改接口]服务WEB后台接口,入参id：{}，参数为：{}", id, roleCommand);
 		/*********************防止POST 注入进行越权修改角色信息  start***************************/
 		//系统管理员ID=1  不能进行修改操作
@@ -240,7 +240,7 @@ public class RoleController extends BaseController{
 	  */
      @RequestMapping(value = BaseUrl.ROLE_VIEW, method = RequestMethod.GET)
      @RequiresPermissions("role:view")
-     public String showViewRoleForm(Model model, @PathVariable Long id, @ModelAttribute RoleCommand roleCommand) {
+     public String show(Model model, @PathVariable Long id, @ModelAttribute RoleCommand roleCommand) {
      	
     	 Role role = roleService.getRole( id );
     	 roleCommand.setRoleId(id);

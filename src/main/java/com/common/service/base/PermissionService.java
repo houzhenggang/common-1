@@ -8,9 +8,11 @@
 package com.common.service.base;
 
 import java.util.List;
+import java.util.Set;
 
 import com.common.command.PermissionCommand;
 import com.common.pojo.base.Permission;
+import com.common.pojo.base.User;
 
 
 /**
@@ -36,5 +38,7 @@ public interface PermissionService {
     List<Permission> getParentPermission();
     
     List<String> selectPermissionsByRoleId(Long roleId);
+    
+    Long initAdminRole(User user, Set<String> permissions);
 	
 }

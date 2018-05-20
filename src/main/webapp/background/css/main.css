@@ -1165,7 +1165,7 @@ select,option,textarea{
 .alert-content-msg{
     padding: 20px;
     border-radius: 3px;
-    background-color:#3e730c;
+    background-color:#007cfa;
     position: absolute;
     width: 15%;
     top:45%;
