@@ -1,54 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.common.dao.BannerDAO" >
-  <resultMap id="BaseResultMap" type="com.common.pojo.Banner" >
+<mapper namespace="com.common.dao.NoticeDAO" >
+  <resultMap id="BaseResultMap" type="com.common.pojo.Notice" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
-    <result column="goods_code" property="goodsCode" jdbcType="VARCHAR" />
-    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="img_path" property="imgPath" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="creator" property="creator" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="VARCHAR" />
     <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.common.pojo.Notice" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
   <sql id="Base_Column_List" >
-    id, goods_id, goods_code, goods_name, img_path, status, creator, create_time, update_time
+    id, title, img_path, status, creator, create_time, update_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from banner
+    ,
+    <include refid="Blob_Column_List" />
+    from notice
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from banner
+    delete from notice
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.common.pojo.Banner" >
-    insert into banner (id, goods_id, goods_code, 
-      goods_name, img_path, status, 
-      creator, create_time, update_time
-      )
-    values (#{id,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{goodsCode,jdbcType=VARCHAR}, 
-      #{goodsName,jdbcType=VARCHAR}, #{imgPath,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="com.common.pojo.Notice" >
+    insert into notice (id, title, img_path, 
+      status, creator, create_time, 
+      update_time, content)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{imgPath,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.common.pojo.Banner" >
-    insert into banner
+  <insert id="insertSelective" parameterType="com.common.pojo.Notice" >
+    insert into notice
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="goodsId != null" >
-        goods_id,
-      </if>
-      <if test="goodsCode != null" >
-        goods_code,
-      </if>
-      <if test="goodsName != null" >
-        goods_name,
+      <if test="title != null" >
+        title,
       </if>
       <if test="imgPath != null" >
         img_path,
@@ -65,19 +63,16 @@
       <if test="updateTime != null" >
         update_time,
       </if>
+      <if test="content != null" >
+        content,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="goodsId != null" >
-        #{goodsId,jdbcType=BIGINT},
-      </if>
-      <if test="goodsCode != null" >
-        #{goodsCode,jdbcType=VARCHAR},
-      </if>
-      <if test="goodsName != null" >
-        #{goodsName,jdbcType=VARCHAR},
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
       </if>
       <if test="imgPath != null" >
         #{imgPath,jdbcType=VARCHAR},
@@ -94,19 +89,16 @@
       <if test="updateTime != null" >
         #{updateTime,jdbcType=VARCHAR},
       </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.common.pojo.Banner" >
-    update banner
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.pojo.Notice" >
+    update notice
     <set >
-      <if test="goodsId != null" >
-        goods_id = #{goodsId,jdbcType=BIGINT},
-      </if>
-      <if test="goodsCode != null" >
-        goods_code = #{goodsCode,jdbcType=VARCHAR},
-      </if>
-      <if test="goodsName != null" >
-        goods_name = #{goodsName,jdbcType=VARCHAR},
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
       </if>
       <if test="imgPath != null" >
         img_path = #{imgPath,jdbcType=VARCHAR},
@@ -123,14 +115,26 @@
       <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=VARCHAR},
       </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.common.pojo.Banner" >
-    update banner
-    set goods_id = #{goodsId,jdbcType=BIGINT},
-      goods_code = #{goodsCode,jdbcType=VARCHAR},
-      goods_name = #{goodsName,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.common.pojo.Notice" >
+    update notice
+    set title = #{title,jdbcType=VARCHAR},
+      img_path = #{imgPath,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      creator = #{creator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.pojo.Notice" >
+    update notice
+    set title = #{title,jdbcType=VARCHAR},
       img_path = #{imgPath,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       creator = #{creator,jdbcType=VARCHAR},
@@ -138,15 +142,14 @@
       update_time = #{updateTime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  
-  <select id="getAllBanner" resultMap="BaseResultMap" >
+
+  <select id="getAllNotice" resultMap="ResultMapWithBLOBs" >
     select 
     <include refid="Base_Column_List" />
-    from banner where status = 1
+    ,
+    <include refid="Blob_Column_List" />
+    from notice where status = 1
+    order by create_time desc
   </select>   
-
-  <select id="countRollingBanner" resultType="java.lang.Integer" >
-    select count(*) from banner where status = 1
-  </select>  
   
 </mapper>

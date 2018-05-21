@@ -2,28 +2,22 @@ package com.common.pojo;
 
 import com.common.core.model.BaseObject;
 
-public class Banner extends BaseObject{
+public class Notice extends BaseObject{
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//数据自增ID
+	//数据ID
     private Long id;
 
-    //关联商品ID
-    private Long goodsId;
+    //公告标题
+    private String title;
 
-    //关联商品编码
-    private String goodsCode;
-
-    //关联商品名称
-    private String goodsName;
-
-    //banner图片地址
+    //公告图片
     private String imgPath;
 
-    //Banner状态 0：不轮转 1：轮转中
+    //公告状态 0：不展示 1：展示
     private Integer status;
 
     //创建者
@@ -35,6 +29,9 @@ public class Banner extends BaseObject{
     //修改时间
     private String updateTime;
 
+    //公告内容
+    private String content;
+
     public Long getId() {
         return id;
     }
@@ -43,28 +40,12 @@ public class Banner extends BaseObject{
         this.id = id;
     }
 
-    public Long getGoodsId() {
-        return goodsId;
+    public String getTitle() {
+        return title;
     }
 
-    public void setGoodsId(Long goodsId) {
-        this.goodsId = goodsId;
-    }
-
-    public String getGoodsCode() {
-        return goodsCode;
-    }
-
-    public void setGoodsCode(String goodsCode) {
-        this.goodsCode = goodsCode == null ? null : goodsCode.trim();
-    }
-
-    public String getGoodsName() {
-        return goodsName;
-    }
-
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName == null ? null : goodsName.trim();
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
     public String getImgPath() {
@@ -105,5 +86,13 @@ public class Banner extends BaseObject{
 
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime == null ? null : updateTime.trim();
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 }

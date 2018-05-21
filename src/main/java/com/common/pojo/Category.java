@@ -1,10 +1,3 @@
-/*
- * @(#) Category.java 2018年05月18日
- *
- * Copyright (c), 2016 深圳市万睿智能科技有限公司（Shenzhen Wan Rui Intelligent Technology Co., Ltd.），
- * 
- * 著作权人保留一切权利，任何使用需经授权。
-*/
 package com.common.pojo;
 
 import com.common.core.model.BaseObject;
@@ -26,6 +19,9 @@ public class Category extends BaseObject{
 
     //创建时间
     private String createTime;
+
+    //修改时间
+    private String updateTime;
 
     public Long getId() {
         return id;
@@ -57,5 +53,13 @@ public class Category extends BaseObject{
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime == null ? null : createTime.trim();
+    }
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime == null ? null : updateTime.trim();
     }
 }
