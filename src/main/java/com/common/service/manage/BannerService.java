@@ -23,11 +23,11 @@ import com.common.pojo.Banner;
  */
 public interface BannerService {
 
-	Banner getBanner(int id);
+	Banner getBanner(Long id);
 
     void createBanner(BannerCommand bannerCommand, String imgPath, String creator);
 
-    void deleteBanner(int id);
+    void deleteBanner(Long id);
 
     void updateBanner(Banner banner, BannerCommand bannerCommand);
     
