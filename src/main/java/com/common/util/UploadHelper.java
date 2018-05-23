@@ -5,8 +5,12 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.MemoryCacheImageInputStream;
@@ -14,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 public class UploadHelper {
     
@@ -153,7 +158,36 @@ public class UploadHelper {
      * @param userType
      * @return
      */
-    public static String multipartUpload(MultipartFile multFile, String userType){
+    public static List<String> uploadManyFiles(HttpServletRequest request, String userType){
+    	CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
+    			request.getSession().getServletContext());
+    	// 判断 request 是否有文件上传,即多部分请求
+    	List<String> list = new ArrayList<String>();
+    	if (multipartResolver.isMultipart(request)) {
+    		// 转换成多部分request
+			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+			// 取得request中的所有文件名
+			Iterator<String> iter = multiRequest.getFileNames();
+			String newFileName = null;
+			while (iter.hasNext()) {
+				// 取得上传文件
+				MultipartFile file = multiRequest.getFile(iter.next());
+				if (file != null) {
+					newFileName = UploadHelper.multipartUpload(file, userType);
+					list.add(newFileName);
+				}
+			}
+    	}
+    	return list;
+    }
+    
+    /**
+     * 多图上传 辅助
+     * @param multFile
+     * @param userType
+     * @return
+     */
+    private static String multipartUpload(MultipartFile multFile, String userType){
     	String fileName = "";
         String tempPath = "";
         String result = "";
@@ -175,19 +209,23 @@ public class UploadHelper {
                 tempPath = getAttachSavePath();
                 String newFilePath = tempPath + userType + File.separator + childFolder + File.separator
                         + childChildFolder + File.separator;
+                String shortTempPath = tempPath + File.separator + "short" + File.separator + userType
+                        + File.separator + childFolder + File.separator + childChildFolder + File.separator;
                 // 原图片路径
                 f1 = new File(newFilePath);
                 if (!f1.exists()) {
                     f1.setWritable(true);
                     f1.mkdirs();// 建立目录
                 }
+                // 生成缩略图
+                scale(multFile, shortTempPath, folderName, 400);
                 // 生成原图
                 newFile = new File(newFilePath + folderName);
                 multFile.transferTo(newFile);
                 // 返回链接地址
                 result = userType + File.separator + childFolder + File.separator + childChildFolder
                         + File.separator + folderName;
-                return FileAddress.UPLOAD_URL + result;
+                return result;
             } catch (Exception e) {
                 // 删除已上传的文件
                 newFile.delete();

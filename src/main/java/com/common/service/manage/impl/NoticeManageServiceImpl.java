@@ -39,11 +39,11 @@ public class NoticeManageServiceImpl implements NoticeManageService {
 	}
 
 	@Override
-	public void createNotice(NoticeCommand noticeCommand, String creator) {
+	public void createNotice(NoticeCommand noticeCommand, String creator, String imgPath) {
 		Notice notice = new Notice();
 		notice.setTitle(noticeCommand.getTitle());
 		notice.setContent(noticeCommand.getContent());
-		notice.setImgPath(noticeCommand.getImgPath());
+		notice.setImgPath(imgPath);
 		notice.setStatus(StatusCode.STATUS_OFF.getCode());
 		notice.setCreator(creator);
 		notice.setCreateTime(NewDate.getDateTime());

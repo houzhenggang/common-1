@@ -28,6 +28,7 @@ import com.common.pojo.Notice;
 import com.common.pojo.base.Permission;
 import com.common.service.base.UserService;
 import com.common.service.manage.NoticeManageService;
+import com.common.util.UploadHelper;
 
 /**
  *
@@ -53,7 +54,7 @@ public class NoticeManageController extends BaseController{
 	 * @param request
 	 */
     @RequestMapping(value = BaseUrl.NOTICE_LIST)
-    @RequiresPermissions("notice:manage")
+    //@RequiresPermissions("notice:manage")
     public String list(Model model, HttpServletRequest request) {
     	List<Notice> listNotice = noticeManageService.getAllNotice();
     	HttpSession session = request.getSession();
@@ -68,7 +69,7 @@ public class NoticeManageController extends BaseController{
      * @return
      */
 	@RequestMapping(value = BaseUrl.NOTICE_ADD, method = RequestMethod.GET)
-    @RequiresPermissions("notice:add")
+    //@RequiresPermissions("notice:add")
 	public String addForm(Model model, @ModelAttribute NoticeCommand noticeCommand){
 		return "notice/add";
 	}
@@ -80,14 +81,16 @@ public class NoticeManageController extends BaseController{
      * @return
      */
     @RequestMapping(value = BaseUrl.NOTICE_ADD, method = RequestMethod.POST)
-    @RequiresPermissions("banner:add")
-    public String add(Model model, @ModelAttribute NoticeCommand noticeCommand){
+    //@RequiresPermissions("banner:add")
+    public String add(Model model, HttpServletRequest request, @ModelAttribute NoticeCommand noticeCommand){
     	if(noticeCommand.getTitle() == null || "".equals(noticeCommand.getTitle())){
     		model.addAttribute("error", "请输入公告标题！");
     		return addForm(model, noticeCommand);
     	}
-    	noticeManageService.createNotice(noticeCommand, userService.getCurrentUser().getUsername());
-    	return "redirect:/base/notice/list";
+    	String imgPath = UploadHelper.uploadFile(request, "img", "notice");
+    	String creator = userService.getCurrentUser().getUsername();
+    	noticeManageService.createNotice(noticeCommand, creator, imgPath);
+    	return "redirect:/manage/notice/list";
     }
 	
 }

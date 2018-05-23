@@ -24,7 +24,7 @@ public interface NoticeManageService {
 
 	Notice getNotice(Long id);
 
-    void createNotice(NoticeCommand noticeCommand, String creator);
+    void createNotice(NoticeCommand noticeCommand, String creator, String imgPath);
 
     void deleteNotice(Long id);
 

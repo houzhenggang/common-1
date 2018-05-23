@@ -29,9 +29,6 @@ public class NoticeCommand extends BaseObject {
 	// 公告内容
 	private String content;
 	
-	// 公告图片
-    private String imgPath;
-
 	public String getTitle() {
 		return title;
 	}
@@ -46,14 +43,6 @@ public class NoticeCommand extends BaseObject {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public String getImgPath() {
-		return imgPath;
-	}
-
-	public void setImgPath(String imgPath) {
-		this.imgPath = imgPath;
 	}
 
 }

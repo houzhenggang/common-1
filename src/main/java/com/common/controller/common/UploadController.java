@@ -42,7 +42,7 @@ import com.common.util.RandomUtil;
  * @author Administrator
  * @date 2018年5月23日 下午4:20:53
  * @version V1.0.0 description：
- * 
+ * 有问题 弃用
  */
 @Controller
 @RequestMapping("/common")
@@ -50,6 +50,7 @@ public class UploadController extends BaseController {
 
 	@RequestMapping(value = BaseUrl.UPLOAD, method = RequestMethod.POST)
 	@ResponseBody
+	@Deprecated
 	public Object upload(HttpServletRequest request, String path) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		HttpSession session = request.getSession();
