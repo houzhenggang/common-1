@@ -20,11 +20,11 @@ import com.common.pojo.Notice;
  * description：
  * 
  */
-public interface NoticeService {
+public interface NoticeManageService {
 
 	Notice getNotice(Long id);
 
-    void createNotice(NoticeCommand noticeCommand, String imgPath, String creator);
+    void createNotice(NoticeCommand noticeCommand, String creator);
 
     void deleteNotice(Long id);
 

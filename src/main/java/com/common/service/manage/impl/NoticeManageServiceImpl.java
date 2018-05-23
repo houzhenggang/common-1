@@ -16,7 +16,7 @@ import com.common.command.NoticeCommand;
 import com.common.constant.StatusCode;
 import com.common.dao.NoticeDAO;
 import com.common.pojo.Notice;
-import com.common.service.manage.NoticeService;
+import com.common.service.manage.NoticeManageService;
 import com.common.util.NewDate;
 
 /**
@@ -28,7 +28,7 @@ import com.common.util.NewDate;
  * 
  */
 @Service
-public class NoticeServiceImpl implements NoticeService {
+public class NoticeManageServiceImpl implements NoticeManageService {
 
 	@Autowired
 	private NoticeDAO noticeDAO;
@@ -39,11 +39,11 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public void createNotice(NoticeCommand noticeCommand, String imgPath, String creator) {
+	public void createNotice(NoticeCommand noticeCommand, String creator) {
 		Notice notice = new Notice();
 		notice.setTitle(noticeCommand.getTitle());
 		notice.setContent(noticeCommand.getContent());
-		notice.setImgPath(imgPath);
+		notice.setImgPath(noticeCommand.getImgPath());
 		notice.setStatus(StatusCode.STATUS_OFF.getCode());
 		notice.setCreator(creator);
 		notice.setCreateTime(NewDate.getDateTime());

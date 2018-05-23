@@ -21,7 +21,7 @@ import com.common.pojo.Banner;
  * description：
  * 
  */
-public interface BannerService {
+public interface BannerManageService {
 
 	Banner getBanner(Long id);
 

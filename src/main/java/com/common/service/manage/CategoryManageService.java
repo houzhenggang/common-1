@@ -15,7 +15,7 @@ package com.common.service.manage;
  * description：
  * 
  */
-public interface CategoryService {
+public interface CategoryManageService {
 
 	
 	

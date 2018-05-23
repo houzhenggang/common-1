@@ -18,6 +18,9 @@ package com.common.constant;
 public interface BaseUrl {
 
 	/***************************** 用户模块  **********************************/
+	String UPLOAD = "/upload"; //上传图片
+	
+	/***************************** 用户模块  **********************************/
 	String USER_LOGIN = "/user/login"; //用户登录
 	String USER_HOME = "/user/home"; //用户首页
 	String USER_LIST = "/user/list";   //用户列表
@@ -44,5 +47,9 @@ public interface BaseUrl {
 	String PERMISSION_VIEW = "/permission/view/{id}"; //查看权限
 	String PERMISSION_DELETE = "/permission/delete/{id}"; //删除权限
 	String PERMISSION_INIT_ADMIN = "/permission/initAdmin"; //权限初始化
+	
+	/***************************** 通知模块  **********************************/
+	String NOTICE_LIST = "/notice/list"; //通知列表
+	String NOTICE_ADD = "/notice/add"; //新增通知
 	
 }

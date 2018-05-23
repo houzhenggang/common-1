@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import com.common.command.BannerCommand;
 import com.common.dao.BannerDAO;
 import com.common.pojo.Banner;
-import com.common.service.manage.BannerService;
+import com.common.service.manage.BannerManageService;
 
 /**
  *
@@ -26,7 +26,7 @@ import com.common.service.manage.BannerService;
  * 
  */
 @Service
-public class BannerServiceImpl implements BannerService {
+public class BannerManageServiceImpl implements BannerManageService {
 
 	@Autowired
 	private BannerDAO bannerDAO;
