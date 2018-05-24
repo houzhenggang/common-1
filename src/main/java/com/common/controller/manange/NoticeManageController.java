@@ -7,8 +7,9 @@
  */
 package com.common.controller.manange;
 
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,16 +19,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.common.command.NoticeCommand;
 import com.common.constant.BaseUrl;
+import com.common.constant.StatusCode;
 import com.common.core.controller.BaseController;
 import com.common.pojo.Notice;
-import com.common.pojo.base.Permission;
 import com.common.service.base.UserService;
 import com.common.service.manage.NoticeManageService;
+import com.common.util.NewDate;
 import com.common.util.UploadHelper;
 
 /**
@@ -92,5 +98,119 @@ public class NoticeManageController extends BaseController{
     	noticeManageService.createNotice(noticeCommand, creator, imgPath);
     	return "redirect:/manage/notice/list";
     }
+	
+    /**
+     * 修改公告
+     * @param model
+     * @param id
+     * @return
+     */
+	@RequestMapping(value = BaseUrl.NOTICE_EDIT, method = RequestMethod.GET)
+    //@RequiresPermissions("banner:edit")
+	public String editForm(Model model, @PathVariable Long id){
+		Notice notice = noticeManageService.getNotice(id);
+		if (notice == null) {
+			return "redirect:/manage/notice/list";
+		}
+		model.addAttribute("id", id);
+		model.addAttribute("notice", notice);
+		return "notice/edit";
+	}
+	
+	/**
+	 * 修改公告
+	 * @param model
+	 * @param request
+	 * @param id
+	 * @param noticeCommand
+	 * @return
+	 */
+	@RequestMapping(value = BaseUrl.NOTICE_EDIT, method = RequestMethod.POST)
+    //@RequiresPermissions("banner:edit")
+	public String edit(Model model, HttpServletRequest request, @PathVariable Long id, 
+			@ModelAttribute NoticeCommand noticeCommand){
+		
+		if(noticeCommand.getTitle() == null || "".equals(noticeCommand.getTitle())){
+    		model.addAttribute("error", "公告标题不能为空，已恢复至修改之前状态！！");
+    		return editForm(model,id);
+    	}
+		
+		Notice notice = noticeManageService.getNotice(id);
+		if (notice == null) {
+			return "redirect:/manage/notice/list";
+		}
+		
+		String imgPath = UploadHelper.uploadFile(request, "img", "notice");
+		
+		if (imgPath != null || !"".equals(imgPath)) {
+			notice.setImgPath(imgPath);
+		}
+		notice.setCreator(userService.getCurrentUser().getUsername());
+		
+		noticeManageService.updateNotice(notice, noticeCommand);
+		return "redirect:/manage/notice/list";
+	}    
+
+	/**
+     * 查看公告
+     * @param model
+     * @param id
+     * @return
+     */
+	@RequestMapping(value = BaseUrl.NOTICE_VIEW, method = RequestMethod.GET)
+    //@RequiresPermissions("banner:edit")
+	public String view(Model model, @PathVariable Long id){
+		Notice notice = noticeManageService.getNotice(id);
+		if (notice == null) {
+			return "redirect:/manage/notice/list";
+		}
+		model.addAttribute("notice", notice);
+		return "notice/view";
+	}	
+	
+	 /**
+	  * 删除公告
+	  * @param model
+	  * @param id
+	  * @return
+	  */
+	@RequestMapping(value = BaseUrl.NOTICE_DELETE, method = RequestMethod.GET)
+	//@RequiresPermissions("banner:delete")
+	public String delete(Model model,@PathVariable Long id){
+		Notice notice = noticeManageService.getNotice(id);
+		if (notice == null) {
+			return "redirect:/manage/notice/list";
+		}
+		noticeManageService.deleteNotice(id);
+		return "redirect:/manage/notice/list";
+	}
+	
+	/**
+	 * 允许/不允许通知
+	 * @param model
+	 * @param id
+	 */
+	@RequestMapping(value = BaseUrl.NOTICE_CHANGE, method = RequestMethod.POST)
+	@ResponseBody
+	//@RequiresPermissions("banner:change")
+	public Object changeStatus(Model model, @PathVariable Long id){
+		Map<String, Object> map = new HashMap<String, Object>();
+		Notice notice = noticeManageService.getNotice(id);
+		if(notice != null){
+	    	//状态【0：不滚动】
+			if (notice.getStatus() == 0) {
+				notice.setStatus(StatusCode.STATUS_ON.getCode());
+				notice.setUpdateTime(NewDate.getDateTime());
+				noticeManageService.updateNotice(notice);
+			} else {
+				notice.setStatus(StatusCode.STATUS_OFF.getCode());
+				notice.setUpdateTime(NewDate.getDateTime());
+				noticeManageService.updateNotice(notice);
+			}
+		}
+		JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(map));
+		return jsonObject;
+		
+	}
 	
 }

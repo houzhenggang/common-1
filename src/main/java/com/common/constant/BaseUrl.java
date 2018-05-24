@@ -49,7 +49,11 @@ public interface BaseUrl {
 	String PERMISSION_INIT_ADMIN = "/permission/initAdmin"; //权限初始化
 	
 	/***************************** 通知模块  **********************************/
-	String NOTICE_LIST = "/notice/list"; //通知列表
-	String NOTICE_ADD = "/notice/add"; //新增通知
+	String NOTICE_LIST = "/notice/list"; //公告通知列表
+	String NOTICE_ADD = "/notice/add"; //新增公告通知
+	String NOTICE_EDIT = "/notice/edit/{id}"; //修改公告通知
+	String NOTICE_VIEW = "/notice/view/{id}"; //查看公告通知
+	String NOTICE_DELETE = "/notice/delete/{id}"; //删除公告通知
+	String NOTICE_CHANGE = "/notice/change/{id}"; //改变公告状态
 	
 }

@@ -28,6 +28,8 @@ public interface NoticeManageService {
 
     void deleteNotice(Long id);
 
+    void updateNotice(Notice notice);
+    
     void updateNotice(Notice notice, NoticeCommand noticeCommand);
     
     List<Notice> getAllNotice();

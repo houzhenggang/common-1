@@ -19,8 +19,8 @@
                         <%-- <shiro:hasPermission name="notice:manage"> --%>
                         <li class="manager on"><a href="${ctx}/manage/notice/list">公告通知</a></li>
                         <%-- </shiro:hasPermission> --%>
-                        <shiro:hasPermission name="banner:manage">
-                        <li class="manager"><a href="${ctx}/manage/banner">宣传图片</a></li>
+                        <shiro:hasPermission name="notice:manage">
+                        <li class="manager"><a href="${ctx}/manage/notice">宣传图片</a></li>
                         </shiro:hasPermission>
                         <shiro:hasPermission name="rewardPlan:manage">
                         <li class="manager "><a href="${ctx}/manage/rewardPlan">奖励计划</a></li>
@@ -60,30 +60,32 @@
 						 		Notice notice = listNotice.get(i);
 						 		int status = notice.getStatus();//1：滚动中  0：未滚动
 						 		if(status == 0){
-						 			statusP = "未滚动";
-						 			statusB = "滚动";
+						 			statusP = "未公告";
+						 			statusB = "开启";
 						 		}else{
-						 			statusP = "滚动中";
+						 			statusP = "公告中";
 						 			statusB = "禁止";
 						 		}
 						 		
 	                    %>
                     
                         <tr>
-                            <td title="<%=notice.getTitle()%>"><%=notice.getTitle()%></td>
+                            <td title="<%=notice.getTitle()%>">
+                            <a href="${ctx}/manage/notice/view/<%=notice.getId()%>">
+                            <%=notice.getTitle()%></a></td>
                             <td id="st<%=notice.getId()%>"><%=statusP%></td>
                             <td><%=notice.getCreator()%></td>
                             <td><%=notice.getUpdateTime()%></td>
                             <td>
-							<%-- <shiro:hasPermission name="banner:change"> --%>
+							<%-- <shiro:hasPermission name="notice:change"> --%>
                             <span><a href="javascript:void(0);" onclick="changeStatus(<%=notice.getId()%>);" id="<%=notice.getId()%>"><%=statusB%></a></span>
                             <%-- </shiro:hasPermission> --%>
-							<%-- <shiro:hasPermission name="banner:edit"> --%>
-                            <span><a href="${ctx}/manage/banner/edit/<%=notice.getId()%>">编辑</a></span>
+							<%-- <shiro:hasPermission name="notice:edit"> --%>
+                            <span><a href="${ctx}/manage/notice/edit/<%=notice.getId()%>">编辑</a></span>
                             <%-- </shiro:hasPermission> --%>
-							<%-- <shiro:hasPermission name="banner:delete"> --%>
-                            <span><a href="javascript:void(0)" onclick="javascript:if (confirm('确定删除该伙伴吗?'))
-                            {window.location='${ctx}/manage/banner/delete/<%=notice.getId()%>'}">删除</a></span>
+							<%-- <shiro:hasPermission name="notice:delete"> --%>
+                            <span><a href="javascript:void(0)" onclick="javascript:if (confirm('确定删除该公告吗?'))
+                            {window.location='${ctx}/manage/notice/delete/<%=notice.getId()%>'}">删除</a></span>
                             <%-- </shiro:hasPermission> --%>
                             </td>
                         </tr>
@@ -95,7 +97,7 @@
                     </tbody>
                 </table>
                 <div class="add-btn">
-                	<%-- <shiro:hasPermission name="banner:add"> --%>
+                	<%-- <shiro:hasPermission name="notice:add"> --%>
                     <a href="${ctx}/manage/notice/add">新增公告</a>
                     <%-- </shiro:hasPermission> --%>
                 </div>
@@ -141,17 +143,15 @@ function changeStatus(id){
 			if(msg){
 				warning(data.msg,2000);
 			}else{
-				
 				setTimeout(function(){
 					if(status == '禁止'){
-						objStatus.text("滚动");
-						$("#st"+id).text("未滚动");
+						objStatus.text("开启");
+						$("#st"+id).text("未公告");
 					}else{
 						objStatus.text("禁止");
-						$("#st"+id).text("滚动中");
+						$("#st"+id).text("公告中");
 					} 
 				},300)
-				
 			}
 		}
 	});

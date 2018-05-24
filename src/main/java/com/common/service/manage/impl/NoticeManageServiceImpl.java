@@ -55,6 +55,11 @@ public class NoticeManageServiceImpl implements NoticeManageService {
 	public void deleteNotice(Long id) {
 		noticeDAO.deleteByPrimaryKey(id);
 	}
+	
+	@Override
+	public void updateNotice(Notice notice) {
+		noticeDAO.updateByPrimaryKeySelective(notice);		
+	}
 
 	@Override
 	public void updateNotice(Notice notice, NoticeCommand noticeCommand) {
