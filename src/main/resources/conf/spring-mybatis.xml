@@ -47,6 +47,7 @@
         	<list>
                 <value>classpath:sqlmap/base/*.xml</value>
                 <value>classpath:sqlmap/*.xml</value>
+                <!-- <value>classpath:sqlmap/**/*.xml</value> -->
             </list>
         </property>
     </bean>  
