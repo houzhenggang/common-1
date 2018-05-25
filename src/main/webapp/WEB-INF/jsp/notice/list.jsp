@@ -58,7 +58,7 @@
 					 		String statusB = "";
 						 	for (int i = pUtil.getFromIndex(); i < pUtil.getToIndex(); i++){
 						 		Notice notice = listNotice.get(i);
-						 		int status = notice.getStatus();//1：滚动中  0：未滚动
+						 		int status = notice.getStatus();//1：开启  0：禁止
 						 		if(status == 0){
 						 			statusP = "未公告";
 						 			statusB = "开启";
@@ -155,7 +155,6 @@ function changeStatus(id){
 			}
 		}
 	});
-	
 }
 
 /* 分页使用ajax无刷新获取 */

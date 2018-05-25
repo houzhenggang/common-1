@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.common.command.NoticeCommand;
-import com.common.constant.BaseUrl;
+import com.common.constant.ManageUrl;
 import com.common.constant.StatusCode;
 import com.common.core.controller.BaseController;
 import com.common.pojo.Notice;
@@ -59,7 +59,7 @@ public class NoticeManageController extends BaseController{
 	 * @param model
 	 * @param request
 	 */
-    @RequestMapping(value = BaseUrl.NOTICE_LIST)
+    @RequestMapping(value = ManageUrl.NOTICE_LIST)
     //@RequiresPermissions("notice:manage")
     public String list(Model model, HttpServletRequest request) {
     	List<Notice> listNotice = noticeManageService.getAllNotice();
@@ -74,7 +74,7 @@ public class NoticeManageController extends BaseController{
      * @param command
      * @return
      */
-	@RequestMapping(value = BaseUrl.NOTICE_ADD, method = RequestMethod.GET)
+	@RequestMapping(value = ManageUrl.NOTICE_ADD, method = RequestMethod.GET)
     //@RequiresPermissions("notice:add")
 	public String addForm(Model model, @ModelAttribute NoticeCommand noticeCommand){
 		return "notice/add";
@@ -86,10 +86,10 @@ public class NoticeManageController extends BaseController{
      * @param command
      * @return
      */
-    @RequestMapping(value = BaseUrl.NOTICE_ADD, method = RequestMethod.POST)
+    @RequestMapping(value = ManageUrl.NOTICE_ADD, method = RequestMethod.POST)
     //@RequiresPermissions("banner:add")
     public String add(Model model, HttpServletRequest request, @ModelAttribute NoticeCommand noticeCommand){
-    	if(noticeCommand.getTitle() == null || "".equals(noticeCommand.getTitle())){
+    	if (noticeCommand.getTitle() == null || "".equals(noticeCommand.getTitle())) {
     		model.addAttribute("error", "请输入公告标题！");
     		return addForm(model, noticeCommand);
     	}
@@ -100,12 +100,12 @@ public class NoticeManageController extends BaseController{
     }
 	
     /**
-     * 修改公告
+     * 修改公告页面
      * @param model
      * @param id
      * @return
      */
-	@RequestMapping(value = BaseUrl.NOTICE_EDIT, method = RequestMethod.GET)
+	@RequestMapping(value = ManageUrl.NOTICE_EDIT, method = RequestMethod.GET)
     //@RequiresPermissions("banner:edit")
 	public String editForm(Model model, @PathVariable Long id){
 		Notice notice = noticeManageService.getNotice(id);
@@ -125,12 +125,11 @@ public class NoticeManageController extends BaseController{
 	 * @param noticeCommand
 	 * @return
 	 */
-	@RequestMapping(value = BaseUrl.NOTICE_EDIT, method = RequestMethod.POST)
+	@RequestMapping(value = ManageUrl.NOTICE_EDIT, method = RequestMethod.POST)
     //@RequiresPermissions("banner:edit")
 	public String edit(Model model, HttpServletRequest request, @PathVariable Long id, 
 			@ModelAttribute NoticeCommand noticeCommand){
-		
-		if(noticeCommand.getTitle() == null || "".equals(noticeCommand.getTitle())){
+		if (noticeCommand.getTitle() == null || "".equals(noticeCommand.getTitle())) {
     		model.addAttribute("error", "公告标题不能为空，已恢复至修改之前状态！！");
     		return editForm(model,id);
     	}
@@ -141,8 +140,7 @@ public class NoticeManageController extends BaseController{
 		}
 		
 		String imgPath = UploadHelper.uploadFile(request, "img", "notice");
-		
-		if (imgPath != null || !"".equals(imgPath)) {
+		if (imgPath != null && !"".equals(imgPath)) {
 			notice.setImgPath(imgPath);
 		}
 		notice.setCreator(userService.getCurrentUser().getUsername());
@@ -157,7 +155,7 @@ public class NoticeManageController extends BaseController{
      * @param id
      * @return
      */
-	@RequestMapping(value = BaseUrl.NOTICE_VIEW, method = RequestMethod.GET)
+	@RequestMapping(value = ManageUrl.NOTICE_VIEW, method = RequestMethod.GET)
     //@RequiresPermissions("banner:edit")
 	public String view(Model model, @PathVariable Long id){
 		Notice notice = noticeManageService.getNotice(id);
@@ -174,7 +172,7 @@ public class NoticeManageController extends BaseController{
 	  * @param id
 	  * @return
 	  */
-	@RequestMapping(value = BaseUrl.NOTICE_DELETE, method = RequestMethod.GET)
+	@RequestMapping(value = ManageUrl.NOTICE_DELETE, method = RequestMethod.GET)
 	//@RequiresPermissions("banner:delete")
 	public String delete(Model model,@PathVariable Long id){
 		Notice notice = noticeManageService.getNotice(id);
@@ -190,7 +188,7 @@ public class NoticeManageController extends BaseController{
 	 * @param model
 	 * @param id
 	 */
-	@RequestMapping(value = BaseUrl.NOTICE_CHANGE, method = RequestMethod.POST)
+	@RequestMapping(value = ManageUrl.NOTICE_CHANGE, method = RequestMethod.POST)
 	@ResponseBody
 	//@RequiresPermissions("banner:change")
 	public Object changeStatus(Model model, @PathVariable Long id){

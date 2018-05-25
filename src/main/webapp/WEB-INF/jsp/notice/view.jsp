@@ -18,9 +18,9 @@
 	                </div>
 	                <div class="new-content">
 	                    <p>公告内容:</p>
-	                    <textarea name="requirement" readonly="readonly">${notice.content}</textarea>
+	                    <textarea name="content" readonly="readonly">${notice.content}</textarea>
 	                </div>
-	                <div>
+	                <div class="upload-img-div">
 	                    <div class="shop-goods-pic">
 	                        <p>公告图片:</p>
 	                        <div id="divImgPreview">
@@ -43,7 +43,6 @@
 	
 	                </div>
 	                <div class="add-button" style="margin-bottom:50px">
-	                    <input type="submit" value="保 存" />
 		                <input type="button" onclick="document.location.href='${ctx}/manage/notice/list'" value="取 消" />
 	                </div>
 	            </div>
@@ -52,13 +51,4 @@
         </div>
     </section>
 </body>
-<script src="${ctx}/background/js/uploadFile.js"></script>
-<script type="text/javascript">
-$(function () {
-	//点击打开文件选择器  
-    $('#upload').on('click', function() {  
-        $('#fileToUpload').click();  
-    });
-})
-</script>
 </html>

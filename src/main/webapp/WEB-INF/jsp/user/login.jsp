@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>乐信集团安全应急响应中心</title>
+    <title>MY 后台管理系统中心</title>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="description" content="乐信集团安全应急响应中心">
@@ -37,8 +37,8 @@
                         <img src="${ctx}/background/img/logo.png" alt="">
                     </div>
                     <div class="logo-text fl">
-                        <p>乐信集团安全应急响应中心</p>
-                        <p>LX Security Response Center </p>
+                        <p>MY 后台管理系统中心</p>
+                        <p>MY Manage system Center </p>
                     </div>
                 </a>
             </div>

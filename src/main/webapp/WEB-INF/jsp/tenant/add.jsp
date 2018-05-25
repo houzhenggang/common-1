@@ -2,27 +2,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
-<%request.setAttribute("MENU_INDEX", "home");%>
+<%request.setAttribute("MENU_INDEX", "tenant");%>
 <jsp:include page="/base/user/head" flush="true"/>
 
         <div class="management-center second-section">
             <div class="second-title">
-                <a href="${ctx}/base/user/home">管理中心</a> <a href="${ctx}/manage/notice/list"> > 公告通知</a> <span> > 新增公告</span>
+                <a href="${ctx}/manage/tenant/list">租户管理</a> <span> > 新增租户</span>
             </div>
-            <form action="${ctx}/manage/notice/add" method="post" enctype="multipart/form-data">
+            <form action="${ctx}/manage/tenant/add" method="post" enctype="multipart/form-data">
 	            <div class="new-recruit">
 	                <div class="bug-input input900">
-	                <p>公告标题:</p><input type="text" name="title" value="${noticeCommand.title}" />
+	                <p>租户姓名:</p><input type="text" name="name" value="${tenantCommand.name}" />
 	                </div>
-	                <div class="new-content">
-	                    <p>公告内容:</p>
-	                    <textarea name="content">${noticeCommand.content}</textarea>
+	                <div class="bug-input input900">
+	                <p>租户年龄:</p><input type="text" name="age" value="${tenantCommand.age}" />
 	                </div>
 	                <div class="upload-img-div">
-	                    <div class="shop-goods-pic">
-	                        <p>公告图片:</p>
+	                    <div class="user-img-pic">
+	                        <p>租户照片:</p>
 	                        <div id="divImgPreview">
-	                            <p>图片规格1600×435px</p>
+	                            <p>图片规格350×490px</p>
 	                            <div>
 	                            <img id="img" src="" />
 	                            </div>
@@ -30,16 +29,14 @@
 			                    <input id="fileToUpload" style="display: none" type="file"
 			                    onchange="PreviewImage(this,'img','divImgPreview')" name="img">  
 	                        </div>
-	
 	                    </div>
 	                </div>
 	                <div class="add-button" style="margin-bottom:50px">
 	                    <input type="submit" value="保 存" />
-		                <input type="button" onclick="document.location.href='${ctx}/manage/notice/list'" value="取 消" />
+		                <input type="button" onclick="document.location.href='${ctx}/manage/tenant/list'" value="取 消" />
 	                </div>
 	            </div>
-	
-        	</form>
+		</form>
         </div>
     </section>
 </body>

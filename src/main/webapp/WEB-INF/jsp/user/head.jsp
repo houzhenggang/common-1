@@ -57,14 +57,14 @@
                 <ul class="clear">
                 
 				<shiro:hasPermission name="user:manage">
-                    <li><a href="${ctx}/security/user"
+                    <li><a href="${ctx}/base/user/list"
                     <%="home".equals(menu)?" class=\"on\"":""%> >管理中心</a></li>
 				</shiro:hasPermission>
 				
-				<shiro:hasPermission name="account:manage">
-                    <li><a href="${ctx}/security/accountM" 
-                    <%="account".equals(menu)?" class=\"on\"":""%> >成员列表</a></li>
-                </shiro:hasPermission>    
+				<%-- <shiro:hasPermission name="account:manage"> --%>
+                    <li><a href="${ctx}/manage/tenant/list" 
+                    <%="tenant".equals(menu)?" class=\"on\"":""%> >租户列表</a></li>
+                <%-- </shiro:hasPermission>     --%>
 				
 				<shiro:hasPermission name="order:manage">                    
                     <li><a href="${ctx}/security/orderM"

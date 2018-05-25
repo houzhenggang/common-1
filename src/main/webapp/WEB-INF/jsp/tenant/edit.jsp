@@ -1,54 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
-<%request.setAttribute("MENU_INDEX", "home");%>
+<%request.setAttribute("MENU_INDEX", "tenant");%>
 <jsp:include page="/base/user/head" flush="true"/>
 
         <div class="management-center second-section">
             <div class="second-title">
-                <a href="${ctx}/base/user/home">管理中心</a> <a href="${ctx}/manage/notice/list"> > 公告通知</a> <span> > 修改公告</span>
+                <a href="${ctx}/manage/tenant/list">租户管理</a> <span> > 修改租户</span>
             </div>
-            
-            <form action="${ctx}/manage/notice/edit/${id}" method="post" enctype="multipart/form-data">
+            <form action="${ctx}/manage/tenant/edit/${id}" method="post" enctype="multipart/form-data">
 	            <div class="new-recruit">
 	                <div class="bug-input input900">
-	                <p>公告标题:</p><input type="text" name="title" value="${notice.title}" />
+	                <p>租户姓名:</p><input type="text" name="name" value="${tenant.name}" />
 	                </div>
-	                <div class="new-content">
-	                    <p>公告内容:</p>
-	                    <textarea name="content">${notice.content}</textarea>
+	                <div class="bug-input input900">
+	                <p>租户年龄:</p><input type="text" name="age" value="${tenant.age}" />
 	                </div>
 	                <div class="upload-img-div">
-	                    <div class="shop-goods-pic">
-	                        <p>公告图片:</p>
+	                    <div class="user-img-pic">
+	                        <p>租户照片:</p>
 	                        <div id="divImgPreview">
-	                            <p>图片规格1600×435px</p>
+	                            <p>图片规格350×490px</p>
 	                            <div>
 	                            <img id="img"
 								<c:choose>          
-									<c:when test="${not empty notice.imgPath}"> 
-									src="${notice.imgPath}"
+									<c:when test="${not empty tenant.photo}"> 
+									src="${tenant.photo}"
 									</c:when> 
 									<c:otherwise>src=""</c:otherwise>
 								</c:choose> />
 	                            </div>
-	                            <a href="javascript:void(0)" class="file" id="upload">上传图片</a>
+                            	<a href="javascript:void(0)" class="file" id="upload">上传图片</a>
 			                    <input id="fileToUpload" style="display: none" type="file"
-			                    onchange="PreviewImage(this,'img','divImgPreview')" name="img">
+			                    onchange="PreviewImage(this,'img','divImgPreview')" name="img">  
 	                        </div>
-	
 	                    </div>
-	
 	                </div>
 	                <div class="add-button" style="margin-bottom:50px">
 	                    <input type="submit" value="保 存" />
-		                <input type="button" onclick="document.location.href='${ctx}/manage/notice/list'" value="取 消" />
+		                <input type="button" onclick="document.location.href='${ctx}/manage/tenant/list'" value="取 消" />
 	                </div>
 	            </div>
-	
-        	</form>
+		</form>
         </div>
     </section>
 </body>
