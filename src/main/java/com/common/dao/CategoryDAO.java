@@ -22,4 +22,6 @@ public interface CategoryDAO {
     int updateByPrimaryKey(Category record);
     
     List<CategoryDTO> selectAll();
+    
+    List<Category> getAllCategory();
 }

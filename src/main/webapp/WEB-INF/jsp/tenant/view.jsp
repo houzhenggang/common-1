@@ -11,10 +11,10 @@
             </div>
             <form>
 	            <div class="new-recruit">
-	                <div class="bug-input input900">
+	                <div class="bug-input input310">
 	                <p>租户姓名:</p><input type="text" name="name" value="${tenant.name}" readonly="readonly"/>
 	                </div>
-	                <div class="bug-input input900">
+	                <div class="bug-input input310">
 	                <p>租户年龄:</p><input type="text" name="age" value="${tenant.age}" readonly="readonly"/>
 	                </div>
 	                <div class="upload-img-div">

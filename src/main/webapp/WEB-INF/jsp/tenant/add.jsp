@@ -11,10 +11,10 @@
             </div>
             <form action="${ctx}/manage/tenant/add" method="post" enctype="multipart/form-data">
 	            <div class="new-recruit">
-	                <div class="bug-input input900">
+	                <div class="bug-input input310">
 	                <p>租户姓名:</p><input type="text" name="name" value="${tenantCommand.name}" />
 	                </div>
-	                <div class="bug-input input900">
+	                <div class="bug-input input310">
 	                <p>租户年龄:</p><input type="text" name="age" value="${tenantCommand.age}" />
 	                </div>
 	                <div class="upload-img-div">

@@ -11,14 +11,46 @@
             </div>
             <form action="${ctx}/manage/goods/add" method="post" enctype="multipart/form-data">
 	            <div class="new-recruit">
+	                <div class="bug-input input310">
+	                <p>商品名称:</p><input type="text" name="name" value="${goodsCommand.name}" />
+	                </div>
+	                <div class="bug-input input310">
+	                <p>商品价格:</p><input type="text" name="price" value="${goodsCommand.price}" />
+	                </div>
+	                <div class="bug-input select310">
+	                    <p>商品类型:</p>
+	                    <select name="typeId"> 
+	                    	<c:forEach items="${listCategory}" var="category" varStatus="vs">
+								<option value="${category.id}" <c:if test="${goodsCommand.categoryId == category.id}">selected = "selected"</c:if> >${category.name}</option> 			
+				            </c:forEach>
+						</select>  
+					</div>
 	                <div class="bug-input input900">
-	                <p>租户姓名:</p><input type="text" name="name" value="" />
+	                <p>关 键 词 :</p>&nbsp;<input type="text" name="keywords" value="${goodsCommand.keywords}" />
 	                </div>
 	                <div class="bug-input input900">
-	                <p>租户年龄:</p><input type="text" name="age" value="" />
+	                <p>颜色分类:</p><input type="text" name="colors" value="${goodsCommand.colors}" />
+	                </div>
+	                <div class="upload-img-div">
+	                    <div class="shop-goods-pic">
+	                        <p>商品封面:</p>
+	                        <div id="divImgPreview">
+	                            <p>图片规格360×460px</p>
+	                            <div>
+	                            <img id="img" src="" />
+	                            </div>
+                            	<a href="javascript:void(0)" class="file" id="upload">上传图片</a>
+			                    <input id="fileToUpload" style="display: none" type="file"
+			                    onchange="PreviewImage(this,'img','divImgPreview')" name="img">  
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="new-content">
+	                    <p>商品详情:</p>
+	                    <textarea name="detail">${goodsCommand.detail}</textarea>
 	                </div>
 	                <div class="bug-input input900">
-	                <p>商品图片:</p><input type="hidden" id="goodsImgs" name="imgs" value="" />
+	                <p>详情图片:</p><input type="hidden" id="detailImgs" name="imgs" value="" />
 	                </div>
 	                <div id="uploadImg" style="margin:auto;"></div> 
 	                <div class="add-button" style="margin-bottom:50px">

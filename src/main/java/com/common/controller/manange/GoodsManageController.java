@@ -29,8 +29,10 @@ import com.common.command.GoodsCommand;
 import com.common.constant.ManageUrl;
 import com.common.constant.StatusCode;
 import com.common.core.controller.BaseController;
+import com.common.pojo.Category;
 import com.common.pojo.Goods;
 import com.common.service.base.UserService;
+import com.common.service.manage.CategoryManageService;
 import com.common.service.manage.GoodsManageService;
 import com.common.util.NewDate;
 import com.common.util.UploadHelper;
@@ -49,6 +51,9 @@ public class GoodsManageController extends BaseController{
 
 	@Autowired
 	private GoodsManageService goodsManageService;
+	
+	@Autowired
+	private CategoryManageService categoryManageService;
 	
 	@Autowired
 	private UserService userService;
@@ -76,6 +81,8 @@ public class GoodsManageController extends BaseController{
 	@RequestMapping(value = ManageUrl.GOODS_ADD, method = RequestMethod.GET)
     //@RequiresPermissions("notice:add")
 	public String addForm(Model model, @ModelAttribute GoodsCommand goodsCommand){
+		List<Category> listCategory = categoryManageService.getAllCategory();
+		model.addAttribute("listCategory", listCategory);
 		return "goods/add";
 	}
 

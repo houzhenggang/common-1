@@ -66,10 +66,10 @@
                     <%="tenant".equals(menu)?" class=\"on\"":""%> >租户列表</a></li>
                 <%-- </shiro:hasPermission>     --%>
 				
-				<shiro:hasPermission name="order:manage">                    
-                    <li><a href="${ctx}/security/orderM"
-                    <%="order".equals(menu)?" class=\"on\"":""%> >订单管理</a></li>
-				</shiro:hasPermission>
+				<%-- <shiro:hasPermission name="order:manage">   --%>                  
+                    <li><a href="${ctx}/manage/goods/list"
+                    <%="goods".equals(menu)?" class=\"on\"":""%> >商品管理</a></li>
+				<%-- </shiro:hasPermission> --%>
 				      
 				<shiro:hasPermission name="hole:manage"> 				                    
                     <li><a href="${ctx}/security/holeM"

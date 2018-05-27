@@ -7,6 +7,10 @@
  */
 package com.common.service.manage;
 
+import java.util.List;
+
+import com.common.pojo.Category;
+
 /**
  *
  * @author Administrator
@@ -17,6 +21,6 @@ package com.common.service.manage;
  */
 public interface CategoryManageService {
 
-	
+	List<Category> getAllCategory();
 	
 }
