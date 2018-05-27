@@ -21,7 +21,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.common.util.PropertiesUtils;
+import com.common.util.PropertiesUtil;
 
 /**
  *
@@ -33,7 +33,7 @@ import com.common.util.PropertiesUtils;
 public class CORSFilter implements Filter {
 
     // 跨域白名单设置  通过cros.properties文件进行加载
-    private final static String ORIGIN_LIMIT = PropertiesUtils.loadProperties("cros")
+    private final static String ORIGIN_LIMIT = PropertiesUtil.loadProperties("cros")
     		.getProperty("ALLOW.ORIGIN.LIMIT");
     static Collection<String> ORIGIN_LIST = null;
     static{

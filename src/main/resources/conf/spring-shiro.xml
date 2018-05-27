@@ -44,6 +44,7 @@
                 /servlet/** = anon           <!-- 图片servlet载入 -->
                 /swagger/** = anon           <!-- swagger插件资源载入 -->
                 /background/** = anon        <!-- 后端页面资源载入 -->
+                /uploadFile/** = anon        <!-- 多图上传页面资源载入 -->
                 /oTree/** = anon             <!-- 后端树状图资源载入 -->
                 /** = authc
             </value>

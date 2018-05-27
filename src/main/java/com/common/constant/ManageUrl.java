@@ -33,4 +33,7 @@ public interface ManageUrl {
 	String TENANT_DELETE = "/tenant/delete/{id}"; //删除租户
 	String TENANT_CHANGE = "/tenant/change/{id}"; //冻结/解冻租户
 	
+	/***************************** 商品模块  **********************************/
+	String GOODS_ADD = "/goods/add"; //新增商品
+	
 }

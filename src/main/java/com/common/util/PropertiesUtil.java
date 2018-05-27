@@ -13,14 +13,14 @@ import org.apache.log4j.Logger;
  * @version V1.0.0
  * description：
  */
-public class PropertiesUtils {
-	private static Logger logger = Logger.getLogger(PropertiesUtils.class);
+public class PropertiesUtil {
+	private static Logger logger = Logger.getLogger(PropertiesUtil.class);
 
 	public static Properties loadProperties(String fileName) {
 		Properties props = null;
 		try {
 			props = new Properties();
-			InputStream is = PropertiesUtils.class.getClassLoader().getResourceAsStream(fileName + ".properties");
+			InputStream is = PropertiesUtil.class.getClassLoader().getResourceAsStream(fileName + ".properties");
 			props.load(is);
 			is.close();
 			return props;
@@ -31,7 +31,7 @@ public class PropertiesUtils {
 	}
 
 	public static void main(String[] args) {
-		Properties props = PropertiesUtils.loadProperties("cros");
+		Properties props = PropertiesUtil.loadProperties("cros");
 		System.out.println(props.getProperty("ALLOW.ORIGIN.LIMIT"));
 	}
 

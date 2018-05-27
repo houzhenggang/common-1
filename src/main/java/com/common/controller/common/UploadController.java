@@ -36,6 +36,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.common.constant.BaseUrl;
 import com.common.core.controller.BaseController;
 import com.common.util.RandomUtil;
+import com.common.util.UploadHelper;
 
 /**
  *
@@ -48,6 +49,14 @@ import com.common.util.RandomUtil;
 @RequestMapping("/common")
 public class UploadController extends BaseController {
 
+	@RequestMapping(value = BaseUrl.UPLOAD_MANY, method = RequestMethod.POST)
+	@ResponseBody
+	public Object uploadMany(HttpServletRequest request){
+		String fileName = UploadHelper.uploadManyFiles(request, "goods");
+		return fileName;
+	}
+	
+	
 	@RequestMapping(value = BaseUrl.UPLOAD, method = RequestMethod.POST)
 	@ResponseBody
 	@Deprecated
@@ -155,5 +164,5 @@ public class UploadController extends BaseController {
 		JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(map));
 		return jsonObject;
 	}
-
+	
 }

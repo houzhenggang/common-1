@@ -19,6 +19,7 @@ public interface BaseUrl {
 
 	/***************************** 用户模块  **********************************/
 	String UPLOAD = "/upload"; //上传图片
+	String UPLOAD_MANY = "/upload/many"; //多图上传
 	
 	/***************************** 用户模块  **********************************/
 	String USER_LOGIN = "/user/login"; //用户登录

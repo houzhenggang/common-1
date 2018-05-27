@@ -8,7 +8,7 @@ public class FileAddress {
 
 	static {
 		// 文件、图片上传地址
-		Properties props = PropertiesUtils.loadProperties("config");
+		Properties props = PropertiesUtil.loadProperties("config");
 		UPLOAD_URL = props.getProperty("upload_url");
 	}
 	

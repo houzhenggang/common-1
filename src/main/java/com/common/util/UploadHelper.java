@@ -5,12 +5,9 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.MemoryCacheImageInputStream;
@@ -153,32 +150,30 @@ public class UploadHelper {
     }
 
     /**
-     * 多图上传
+     * 多图上传使用这个
      * @param multFile
      * @param userType
      * @return
      */
-    public static List<String> uploadManyFiles(HttpServletRequest request, String userType){
+    public static String uploadManyFiles(HttpServletRequest request, String userType){
     	CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
     			request.getSession().getServletContext());
     	// 判断 request 是否有文件上传,即多部分请求
-    	List<String> list = new ArrayList<String>();
+    	String newFileName = null;
     	if (multipartResolver.isMultipart(request)) {
     		// 转换成多部分request
 			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
 			// 取得request中的所有文件名
 			Iterator<String> iter = multiRequest.getFileNames();
-			String newFileName = null;
 			while (iter.hasNext()) {
 				// 取得上传文件
 				MultipartFile file = multiRequest.getFile(iter.next());
 				if (file != null) {
 					newFileName = UploadHelper.multipartUpload(file, userType);
-					list.add(newFileName);
 				}
 			}
     	}
-    	return list;
+    	return newFileName;
     }
     
     /**
