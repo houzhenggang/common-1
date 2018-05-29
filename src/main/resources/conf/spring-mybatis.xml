@@ -18,26 +18,49 @@
     <!-- 引入配置文件 -->  
     <bean id="propertyConfigurer"  
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
-        <property name="location" value="classpath:jdbc.properties" />  
+        <!-- <property name="location" value="classpath:jdbc.properties" /> -->  
+        <property name="location" value="classpath:Hikaricp.properties" />  
     </bean>  
   
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"  
+    <!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"  
         destroy-method="close">  
         <property name="driverClassName" value="${driver}" />  
         <property name="url" value="${url}" />  
         <property name="username" value="${username}" />  
         <property name="password" value="${password}" />  
-        <!-- 初始化连接大小 -->  
+        初始化连接大小  
         <property name="initialSize" value="${initialSize}"></property>  
-        <!-- 连接池最大数量 -->  
+        连接池最大数量  
         <property name="maxActive" value="${maxActive}"></property>  
-        <!-- 连接池最大空闲 -->  
+        连接池最大空闲  
         <property name="maxIdle" value="${maxIdle}"></property>  
-        <!-- 连接池最小空闲 -->  
+        连接池最小空闲  
         <property name="minIdle" value="${minIdle}"></property>  
-        <!-- 获取连接最大等待时间 -->  
+        获取连接最大等待时间  
         <property name="maxWait" value="${maxWait}"></property>  
-    </bean>  
+    </bean> -->  
+
+	<!-- Hikari Datasource -->
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+        destroy-method="shutdown">
+        <property name="driverClassName" value="${hikaricp.jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${hikaricp.url}"/>
+		<property name="username" value="${hikaricp.username}"/>
+		<property name="password" value="${hikaricp.password}"/>
+		<property name="connectionTestQuery" value="${hikaricp.connectionTestQuery}"/>
+        <!-- 连接只读数据库时配置为true， 保证安全 -->
+        <property name="readOnly" value="${hikaricp.readOnly}" />
+        <!-- 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒  30*1000ms -->
+        <property name="connectionTimeout" value="${hikaricp.connectionTimeout}"/>
+        <!-- 一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟  10*60*1000ms -->
+        <property name="idleTimeout" value="${hikaricp.idleTimeout}"/>
+        <!-- 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQL 
+            wait_timeout参数（show variables like '%timeout%';） -->
+        <property name="maxLifetime" value="${hikaricp.maxLifetime}"/>
+        <!-- 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count) -->
+        <property name="maximumPoolSize" value="${hikaricp.maximumPoolSize}"/>
+		<property name="minimumIdle" value="${hikaricp.minimumIdle}"/>
+    </bean>
   
     <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->  
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
