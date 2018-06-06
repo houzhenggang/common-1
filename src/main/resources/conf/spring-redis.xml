@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd ">
+
+	<context:property-placeholder location="classpath:redis.properties" ignore-unresolvable="true"/>
+    
+    <!-- Redis 配置 --> 
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig"> 
+        <property name="maxTotal" value="${redis.pool.maxTotal}" /> 
+        <property name="maxIdle" value="${redis.pool.maxIdle}" /> 
+        <property name="maxWaitMillis" value="${redis.pool.maxWaitMillis}" /> 
+        <property name="testOnBorrow" value="${redis.pool.testOnBorrow}" /> 
+    </bean> 
+    
+    <!-- redis单节点数据库连接配置 --> 
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"> 
+        <property name="hostName" value="${redis.ip}" /> 
+        <property name="port" value="${redis.port}" /> 
+        <!-- <property name="password" value="${redis.pass}" /> --> 
+        <property name="poolConfig" ref="jedisPoolConfig" /> 
+    </bean> 
+    
+    <!-- redisTemplate配置，redisTemplate是对Jedis的对redis操作的扩展，有更多的操作，封装使操作更便捷 --> 
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"> 
+        <property name="connectionFactory" ref="jedisConnectionFactory" /> 
+    </bean>
+
+					<!-- 以下是集群配置 -->
+<!-- 	<bean id="culster7001" class="redis.clients.jedis.HostAndPort">
+		<constructor-arg name="host" value="183.60.26.79" />
+		<constructor-arg name="port" value="7001" />
+	</bean>
+	<bean id="culster7002" class="redis.clients.jedis.HostAndPort">
+		<constructor-arg name="host" value="183.60.26.79" />
+		<constructor-arg name="port" value="7002" />
+	</bean>
+	<bean id="culster7003" class="redis.clients.jedis.HostAndPort">
+		<constructor-arg name="host" value="183.60.26.79" />
+		<constructor-arg name="port" value="7003" />
+	</bean>
+	<bean id="culster7004" class="redis.clients.jedis.HostAndPort">
+		<constructor-arg name="host" value="183.60.26.79" />
+		<constructor-arg name="port" value="7004" />
+	</bean>
+	<bean id="culster7005" class="redis.clients.jedis.HostAndPort">
+		<constructor-arg name="host" value="183.60.26.79" />
+		<constructor-arg name="port" value="7005" />
+	</bean>
+	<bean id="culster7006" class="redis.clients.jedis.HostAndPort">
+		<constructor-arg name="host" value="183.60.26.79" />
+		<constructor-arg name="port" value="7006" />
+	</bean>
+
+	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="minIdle" value="${redis.pool.minIdle}" />
+		<property name="maxIdle" value="${redis.pool.maxIdle}" />
+		<property name="maxTotal" value="${redis.pool.maxTotal}" />
+		<property name="maxWaitMillis" value="${redis.pool.maxWaitTime}" />
+		<property name="testOnBorrow" value="${redis.pool.testOnBorrow}" />
+		<property name="testOnReturn" value="true" />
+		<property name="testWhileIdle" value="true" />
+	</bean>
+
+	<bean id="jedisCluster" class="redis.clients.jedis.JedisCluster">
+		<constructor-arg name="nodes">
+			<set>
+				<ref bean="culster7001" />
+				<ref bean="culster7002" />
+				<ref bean="culster7003" />
+				<ref bean="culster7004" />
+				<ref bean="culster7005" />
+				<ref bean="culster7006" />
+			</set>
+		</constructor-arg>
+		<constructor-arg name="poolConfig"> 
+			<ref bean="poolConfig" /> 
+		</constructor-arg>
+	</bean> -->
+ 
+</beans>

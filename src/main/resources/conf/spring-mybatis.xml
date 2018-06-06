@@ -20,6 +20,7 @@
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
         <!-- <property name="location" value="classpath:jdbc.properties" /> -->  
         <property name="location" value="classpath:hikaricp.properties" />  
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
     </bean>  
   
     <!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"  
