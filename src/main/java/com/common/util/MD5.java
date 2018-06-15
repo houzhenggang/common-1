@@ -19,7 +19,7 @@ import java.security.MessageDigest;
 public class MD5 {
 	
 	// 公盐
-	private static final String PUBLIC_SALT = "weiren";
+	private static final String PUBLIC_SALT = "salt";
 	
 	// 十六进制下数字到字符的映射数组
 	private final static String[] hexDigits = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
@@ -91,8 +91,62 @@ public class MD5 {
 		String key = "aliyuncdnexp1234";
 		System.out.println(encodeByMD5(key + time).toLowerCase());*/
 		
-		String p = "/weirenService/account_2.flv-1515586855-0-0-weirenfuwu";
-		System.out.println(encodeByMD5(p).toLowerCase());
+		String p = "&client_key=56c3713c"
+				+ "&country_code=cn"
+				+ "&data=655454786_5256263723135106705_p99"
+				+ "&downs="
+				+ "&exp_tag=1_i/1603266382048571395_p0"
+				+ "&exp_tag0="
+				+ "&language=zh-Hans-CN;q=1"
+				+ "&photoinfo="
+				+ "&token=81066f8718bd4eb48374d9da833b6649-721695143";
+		
+		
+		String a = "app=0"
+				+ "appver=4.49.0.2116"
+				+ "c=VIVO"
+				+ "client_key=3c2cd3f3"
+				+ "country_code=CN"
+				+ "data=3xsew89k8xusa2u_3x24h3w8xsv9bwy_p10"
+				+ "did=ANDROID_3a5fadf1b59f988a"
+				+ "downs="
+				+ "language=zh-cn"
+				+ "lat=NaN"
+				+ "lon=NaN"
+				+ "mod=vivo(vivo X6Plus D)"
+				+ "net=WIFI"
+				+ "oc=VIVO"
+				+ "os=android"
+				+ "sys=ANDROID_5.1"
+				+ "token=d41d8cd98f00b204e9800998ecf8427e-6134061"
+				+ "ud=96052"
+				+ "ver=4.49";
+
+		String test = "app=0"
+				+ "appver=4.49.0.2116"
+				+ "c=VIVO"
+				+ "client_key=3c2cd3f3"
+				+ "country_code=CN"
+				+ "data=3xsew89k8xusa2u_3x24h3w8xsv9bwy_p10"
+				+ "did=ANDROID_3a5fadf1b59f988a"
+				+ "downs="
+				+ "language=zh-cn"
+				+ "lat=NaN"
+				+ "lon=NaN"
+				+ "mod=vivo(vivo X6Plus D)"
+				+ "net=WIFI"
+				+ "oc=VIVO"
+				+ "os=android"
+				+ "sys=ANDROID_5.1"
+				+ "token=d41d8cd98f00b204e9800998ecf8427e-6134061"
+				+ "ud=96052"
+				+ "ver=4.49"
+				+ "382700b563f4";
+		
+		System.out.println(encodeByMD5(a).toLowerCase());
+		System.out.println(encodeByMD5(test).toLowerCase());
+		
+		
 		
 		
 		

@@ -62,12 +62,12 @@ public class HttpClientUtil {
 			httpPost.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36");
 			
 			HttpResponse response = httpClient.execute(httpPost);
-			response.setHeader("Access-Control-Allow-Credentials","true");
+			/*response.setHeader("Access-Control-Allow-Credentials","true");
 			response.setHeader("Access-Control-Allow-Origin","https://live.kuaishou.com");
 			response.setHeader("Connection", "keep-alive");
 			response.setHeader("Content-Encoding","gzip");
 			response.setHeader("Content-Type","application/json;charset=UTF-8");
-			response.setHeader("Transfer-Encoding","chunked");
+			response.setHeader("Transfer-Encoding","chunked");*/
 			if (response != null) {
 				HttpEntity resEntity = response.getEntity();
 				if (resEntity != null) {
@@ -92,26 +92,28 @@ public class HttpClientUtil {
 	    /*System.out.println(doPost(url, createMap, charset));
 	    System.out.println(doPost(url1, createMap, charset));*/
 		long time = System.currentTimeMillis();
-	    createMap.put("base","{'session_id':'C8W7P0VspqkHbv_T',"
+		/*createMap.put("base","{'session_id':'C8W7P0VspqkHbv_T',"
 	    		+ "'page_id':'IDHEDKLy8IKb_Bfs_1528989307174','refer_page_id':'p0r9EgwExRsSB2WZ_1528989301246',"
 	    		+ "'refer_show_id':'','refer_url':'https://live.kuaishou.com/u/3xsew89k8xusa2u/3x24h3w8xsv9bwy?cc=copylink&fid=721695143&timestamp=1528978779212&type=2&et=1_i%2F1603250440607404032_f81&userId=3xsew89k8xusa2u&photoId=3x24h3w8xsv9bwy',"
 	    		+ "'page_live_stream_id':'','url':'https://live.kuaishou.com/u/3xsew89k8xusa2u/3x24h3w8xsv9bwy',"
 	    		+ "'screen':'1920*1080','platform':'Win32','log_time':'"+ time +"'}");  
-	    /*createMap.put("page","1");  
-	    createMap.put("count","20");*/  
-	    createMap.put("events",""); 
-	    System.out.println(doPost(url4, createMap, charset));
+	    createMap.put("page","1");  
+	    createMap.put("count","20");  
+	    createMap.put("events",""); */
+	    /*System.out.println(doPost(url4, createMap, charset));*/
 	    //System.out.println(doPost(url3, createMap, charset));
-	    while(true){
-	    	System.out.println(doPost(url3, createMap, charset));
-	    	Thread.sleep(1000);
-	    }
 	    //System.out.println(doPost(url0, createMap, charset));
 	    /*createMap.put("authToken","ChRrdWFpc2hvdS5saXZlLndlYi5hdBKgAb2R17gvCoTp0aT56S5G8zq0MIsFVzP3fkrQbWsTJl6vR5KHCDcIRHYYLDf7tMwId8aA9TYxtXkkXsXgKmyQGFG9XPymBZYtUf3Dtr1Q3d17QH7UwKqFhA54Y5LoBRBytX0TQ5rDQZ7XwiiwTUICUWaDryJrNHq7+ajQBUhALT5tFP0EtTnVTCRCWxwul4zITDflEey/Hjyv7XUw9Y3Ya7gaErnk7K3szEIAj49h66SvNbb+kSIgjtgdM64aHVfk9QSvu4+JnWXvNotc6QIE2VWWEfrRfk4oBTAB");  
 	    createMap.put("sid","kuaishou.live.web");  
 	    System.out.println(doPost(url2, createMap, charset));*/
-	    
-	    
+	    String newUrl = "http://api.gifshow.com/rest/n/clc/click?mod=vivo(vivo%20X6Plus%20D)&lon=NaN&country_code=CN&did=ANDROID_9d53e66a6e0d94bc&app=0&net=WIFI&oc=VIVO&ud=96052&c=VIVO&sys=ANDROID_5.1&appver=4.49.0.2116&language=zh-cn&lat=NaN&ver=4.49";
+	    createMap.put("downs", "");
+	    createMap.put("token", "d41d8cd98f00b204e9800998ecf8427e-4631196");
+	    createMap.put("data", "3xsew89k8xusa2u_3xjexn9ra2h2ahc_p10");
+	    createMap.put("client_key", "3c2cd3f3");
+	    createMap.put("os", "android");
+	    createMap.put("sig", "81971bbedf68604fba0242e22a6ffbde");
+	    System.out.println(doPost(newUrl, createMap, charset));
 	    
 	}
 	

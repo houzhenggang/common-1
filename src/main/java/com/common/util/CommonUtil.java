@@ -34,7 +34,6 @@ import com.alibaba.fastjson.JSONArray;
  */
 public class CommonUtil {
 
-
 	/**
 	 * 通过URL读取json数据
 	 * 
@@ -337,12 +336,13 @@ public class CommonUtil {
 		System.out.println(replacePhone("18312501959"));*/
 		/*System.out.println(checkPayPwd(""));
 		System.out.println(getSixNum(1));*/
-    	/*System.out.println(sendGet("http://api.gifshow.com/rest/n/clc/click?mod=vivo(vivo%20X6Plus%20D)&lon=NaN&country_code=CN&did=ANDROID_e556f1fea65c6e74&app=0&net=WIFI&oc=VIVO&ud=96052&c=VIVO&sys=ANDROID_5.1&appver=4.49.0.2116&language=zh-cn&lat=NaN&ver=4.49",
-    			"token=d41d8cd98f00b204e9800998ecf8427e-423142"
+    	System.out.println(sendPost("http://api.gifshow.com/rest/n/clc/click?mod=vivo(vivo%20X6Plus%20D)&lon=NaN&country_code=CN&did=ANDROID_e556f1fea65c6e74&app=0&net=WIFI&oc=VIVO&ud=96052&c=VIVO&sys=ANDROID_5.1&appver=4.49.0.2116&language=zh-cn&lat=NaN&ver=4.49",
+    			"downs="
+    			+ "&token=d41d8cd98f00b204e9800998ecf8427e-423142"
     			+ "&data=3xsew89k8xusa2u_3xa5mgtyqjg5g3i_p10"
     			+ "&client_key=3c2cd3f3"
     			+ "&os=android"
-    			+ "&sig=1713e82de6908b91defdf3aa0ea5a90d"));*/
+    			+ "&sig=1713e82de6908b91defdf3aa0ea5a90d"));
     	/*for (int i = 0; i < 20; i++) {
     	}*/
 	}
