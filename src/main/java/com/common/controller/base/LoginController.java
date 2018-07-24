@@ -68,6 +68,7 @@ public class LoginController extends BaseController{
 		UsernamePasswordToken token = new UsernamePasswordToken(command.getUsername(), command.getPassword(), false);
 		try {
 			SecurityUtils.getSubject().login(token);
+			logger.info("sessionID=[{}]", SecurityUtils.getSubject().getSession().getId());
 		} catch (AuthenticationException e) {
 			model.addAttribute("error", "用户名或密码错误，请重新输入！");
 			return loginForm();
