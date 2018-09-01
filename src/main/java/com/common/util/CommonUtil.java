@@ -336,15 +336,73 @@ public class CommonUtil {
 		System.out.println(replacePhone("18312501959"));*/
 		/*System.out.println(checkPayPwd(""));
 		System.out.println(getSixNum(1));*/
-    	System.out.println(sendPost("http://api.gifshow.com/rest/n/clc/click?mod=vivo(vivo%20X6Plus%20D)&lon=NaN&country_code=CN&did=ANDROID_e556f1fea65c6e74&app=0&net=WIFI&oc=VIVO&ud=96052&c=VIVO&sys=ANDROID_5.1&appver=4.49.0.2116&language=zh-cn&lat=NaN&ver=4.49",
+    	/*System.out.println(sendPost("http://api.gifshow.com/rest/n/clc/click?mod=vivo(vivo%20X6Plus%20D)&lon=NaN&country_code=CN&did=ANDROID_e556f1fea65c6e74&app=0&net=WIFI&oc=VIVO&ud=96052&c=VIVO&sys=ANDROID_5.1&appver=4.49.0.2116&language=zh-cn&lat=NaN&ver=4.49",
     			"downs="
     			+ "&token=d41d8cd98f00b204e9800998ecf8427e-423142"
     			+ "&data=3xsew89k8xusa2u_3xa5mgtyqjg5g3i_p10"
     			+ "&client_key=3c2cd3f3"
     			+ "&os=android"
-    			+ "&sig=1713e82de6908b91defdf3aa0ea5a90d"));
-    	/*for (int i = 0; i < 20; i++) {
+    			+ "&sig=1713e82de6908b91defdf3aa0ea5a90d"));*/
+    	/*for (int i=0; i<1;i++) {
+    		
+    		System.out.println(sendPost("http://api.gifshow.com/rest/n/clc/click"
+    				+ "?appver=5.6.2.412"
+    				+ "&did=CF8C80C3-1ECC-46E3-B06F-2DDD4F1CEBD4"
+    				+ "&c=a&ver=5.6"
+    				+ "&ud=721695143"
+    				+ "&lon=113.9693722599014"
+    				+ "&priorityType=1"
+    				+ "&lat=22.54654462827511"
+    				+ "&sys=ios10.3.2"
+    				+ "&mod=iPhone7%2C2"
+    				+ "&net=%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8_5",
+    				"__NStokensig=a6c418ad16f5546344e6e11c6e0d77e8bbaa8dbbb8af71e85c45af3b53426145"
+    						+ "&client_key=56c3713c"
+    						+ "&country_code=cn"
+    						+ "&data=655454786_5233745724099940968_p6"
+    						+ "&downs="
+    						+ "&exp_tag=1_i%2F1603350107535974402_f81"
+    						+ "&exp_tag0="
+    						+ "&language=zh-Hans-CN%3Bq%3D1"
+    						+ "&photoinfo="
+    						+ "&sig=c22d8f9b4182f0cc52de681b257c4aa8"
+    						+ "&token=ba78f147720b4117be25745c2858d0a2-721695143"));
     	}*/
+    	/*String url = "http://api.gifshow.com/rest/n/clc/click?"
+				+ "app=0"
+				+ "&lon=0"
+				+ "&did_gt=1529138968750"
+				+ "&priorityType=1"
+				+ "&c=MYAPP%2C1"
+				+ "&sys=ANDROID_4.4.2"
+				+ "&mod=Tencent%28virtual%20machine%202%29"
+				+ "&did=ANDROID_5522a09bb500d82f"
+				+ "&ver=5.7"
+				+ "&net=WIFI"
+				+ "&country_code=CN"
+				+ "&iuid="
+				+ "&appver=5.7.4.6246"
+				+ "&max_memory=128"
+				+ "&oc=MYAPP%2C1"
+				+ "&ftt=K-T-T"
+				+ "&ud=721695143"
+				+ "&language=zh-cn"
+				+ "&lat=0";
+		
+		String a = "data=655454786_5235997525079428439_p5"
+				+ "&exptag0="
+				+ "&exptag=1_i%2F1603418798930878475_p0"
+				+ "&downs="
+				+ "&photoinfo=655454786%2F_"
+				+ "&os=android"
+				+ "&client_key=3c2cd3f3"
+				+ "&token=51619cc4051949a58cbb16adf98d19dc-721695143"
+				+ "&__NStokensig=ce84a8b02b486460f666eb628f71f737140b1e761f368486855cbb837ce84bd61"
+				+ "&sig=a1e0ddd64062f6d110685e572952909c";
+		
+		System.out.println(sendPost(url, a));*/
+		
+		System.out.println(sendPost("http://localhost:8080/SpringSecurityOAuth2/oauth/token?client_id=my-trusted-client&client_secret=secret&grant_type=authorization_code&code=xHQMlN&redirect_uri=http://www.baidu.com", ""));
 	}
 	
 }
