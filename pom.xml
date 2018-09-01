@@ -275,6 +275,13 @@
 		    <artifactId>httpcore</artifactId>
 		    <version>4.4</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
+		<dependency>
+		    <groupId>org.apache.zookeeper</groupId>
+		    <artifactId>zookeeper</artifactId>
+		    <version>3.4.5</version>
+		</dependency>
 				
 		<!-- 本地包依赖 -->
 		<dependency>  
