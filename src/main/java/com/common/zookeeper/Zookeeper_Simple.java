@@ -34,9 +34,9 @@ public class Zookeeper_Simple implements Watcher{
 		ZooKeeper Zookeeper = new ZooKeeper("39.106.56.98:2181,39.106.56.98:2182,39.106.56.98:2183",
 				5000, new Zookeeper_Simple());
 		System.out.println(Zookeeper.getState());
-		String path = Zookeeper.create("/zk-test/child1", "123".getBytes(), 
+		/*String path = Zookeeper.create("/zk-test/child1", "123".getBytes(), 
 				Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-		System.out.println(path);
+		System.out.println(path);*/
 		
 		try {
 			connectedSemaphore.await();
@@ -45,6 +45,7 @@ public class Zookeeper_Simple implements Watcher{
 		}
 	}
 	
+	@Override
 	public void process(WatchedEvent event) {
 		System.out.println("Recevie watched Event" + event);
 		if (KeeperState.SyncConnected == event.getState()) {
