@@ -50,7 +50,7 @@
 	                    <textarea name="detail">${goodsCommand.detail}</textarea>
 	                </div>
 	                <div class="bug-input input900">
-	                <p>详情图片:</p><input type="hidden" id="detailImgs" name="imgs" value="" />
+	                <p>详情图片:</p><input type="hidden" id="goodsImgs" name="imgs" value="" />
 	                </div>
 	                <div id="uploadImg" style="margin:auto;"></div> 
 	                <div class="add-button" style="margin-bottom:50px">
