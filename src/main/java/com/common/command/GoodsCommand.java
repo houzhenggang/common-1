@@ -35,14 +35,26 @@ public class GoodsCommand extends BaseObject {
 	// 颜色分类
 	private String colors;
 
+	// 长度
+	private String longness;
+
+	// 材质
+	private String material;
+
+	// 风格
+	private String style;
+
+	// 环保等级
+	private String envLevel;
+
 	// 商品类型ID
 	private Long categoryId;
 
 	// 商品详情
 	private String detail;
-	
-	//商品详情图片
-    private String detailImgs;
+
+	// 商品详情图片
+	private String detailImgs;
 
 	public String getName() {
 		return name;
@@ -74,6 +86,38 @@ public class GoodsCommand extends BaseObject {
 
 	public void setColors(String colors) {
 		this.colors = colors;
+	}
+
+	public String getLongness() {
+		return longness;
+	}
+
+	public void setLongness(String longness) {
+		this.longness = longness;
+	}
+
+	public String getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(String material) {
+		this.material = material;
+	}
+
+	public String getStyle() {
+		return style;
+	}
+
+	public void setStyle(String style) {
+		this.style = style;
+	}
+
+	public String getEnvLevel() {
+		return envLevel;
+	}
+
+	public void setEnvLevel(String envLevel) {
+		this.envLevel = envLevel;
 	}
 
 	public Long getCategoryId() {
