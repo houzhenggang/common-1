@@ -49,6 +49,10 @@ public class GoodsManageServiceImpl implements GoodsManageService {
 		goods.setKeywords(goodsCommand.getKeywords());
 		goods.setPrice(goodsCommand.getPrice());
 		goods.setColors(goodsCommand.getColors());
+		goods.setLongness(goodsCommand.getLongness());
+		goods.setMaterial(goodsCommand.getMaterial());
+		goods.setStyle(goodsCommand.getStyle());
+		goods.setEnvLevel(goodsCommand.getEnvLevel());
 		goods.setCategoryId(goodsCommand.getCategoryId());
 		goods.setCoverImg(coverImg);
 		goods.setDetail(goodsCommand.getDetail());
@@ -80,6 +84,10 @@ public class GoodsManageServiceImpl implements GoodsManageService {
 		goods.setKeywords(goodsCommand.getKeywords());
 		goods.setPrice(goodsCommand.getPrice());
 		goods.setColors(goodsCommand.getColors());
+		goods.setLongness(goodsCommand.getLongness());
+		goods.setMaterial(goodsCommand.getMaterial());
+		goods.setStyle(goodsCommand.getStyle());
+		goods.setEnvLevel(goodsCommand.getEnvLevel());
 		goods.setCategoryId(goodsCommand.getCategoryId());
 		goods.setDetail(goodsCommand.getDetail());
 		goods.setDetailImgs(goodsCommand.getDetailImgs());

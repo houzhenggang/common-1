@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
-<%request.setAttribute("MENU_INDEX", "tenant");%>
+<%request.setAttribute("MENU_INDEX", "goods");%>
 <jsp:include page="/base/user/head" flush="true"/>
 
         <div class="management-center second-section">
@@ -15,22 +15,35 @@
 	                <p>商品名称:</p><input type="text" name="name" value="${goodsCommand.name}" />
 	                </div>
 	                <div class="bug-input input310">
-	                <p>商品价格:</p><input type="text" name="price" value="${goodsCommand.price}" />
+	                <p>商品价格:</p><input type="text" name="price" value="${goodsCommand.price}" placeholder="单位：分"/>
 	                </div>
 	                <div class="bug-input select310">
 	                    <p>商品类型:</p>
-	                    <select name="typeId"> 
+	                    <select name="categoryId"> 
 	                    	<c:forEach items="${listCategory}" var="category" varStatus="vs">
 								<option value="${category.id}" <c:if test="${goodsCommand.categoryId == category.id}">selected = "selected"</c:if> >${category.name}</option> 			
 				            </c:forEach>
 						</select>  
 					</div>
-	                <div class="bug-input input900">
-	                <p>关 键 词 :</p>&nbsp;<input type="text" name="keywords" value="${goodsCommand.keywords}" />
+	                <div class="bug-input input310">
+	                <p>商品长度:</p><input type="text" name="longness" value="${goodsCommand.longness}" />
+	                </div>
+	                <div class="bug-input input310">
+	                <p>商品材质:</p><input type="text" name="material" value="${goodsCommand.material}" />
+	                </div>
+	                <div class="bug-input input310">
+	                <p>商品风格:</p><input type="text" name="style" value="${goodsCommand.style}" />
+	                </div>
+	                <div class="bug-input input310">
+	                <p>环保等级:</p><input type="text" name="envLevel" value="${goodsCommand.envLevel}" />
 	                </div>
 	                <div class="bug-input input900">
 	                <p>颜色分类:</p><input type="text" name="colors" value="${goodsCommand.colors}" />
 	                </div>
+	                <div class="bug-input input900">
+	                <p>关 键 词 :</p>&nbsp;<input type="text" name="keywords" value="${goodsCommand.keywords}" />
+	                </div>
+	                
 	                <div class="upload-img-div">
 	                    <div class="shop-goods-pic">
 	                        <p>商品封面:</p>
@@ -50,7 +63,7 @@
 	                    <textarea name="detail">${goodsCommand.detail}</textarea>
 	                </div>
 	                <div class="bug-input input900">
-	                <p>详情图片:</p><input type="hidden" id="goodsImgs" name="imgs" value="" />
+	                <p>详情图片:</p><input type="hidden" id="detailImgs" name="detailImgs" value="${goodsCommand.detailImgs}" />
 	                </div>
 	                <div id="uploadImg" style="margin:auto;"></div> 
 	                <div class="add-button" style="margin-bottom:50px">
@@ -64,6 +77,8 @@
 </body>
 <!-- 引用控制层插件样式 -->
 <link rel="stylesheet" type="text/css" href="${ctx}/uploadFile/control/css/zyUpload.css" >
+<!-- 引用一般上传图片插件 -->
+<script type="text/javascript" src="${ctx}/background/js/uploadFile.js"></script>
 <!-- 引用核心层插件 -->
 <script type="text/javascript" src="${ctx}/uploadFile/core/zyFile.js"></script>
 <!-- 引用控制层插件 -->
@@ -71,6 +86,11 @@
 <!-- 引用初始化JS -->
 <script type="text/javascript">
 $(function(){
+	//点击打开文件选择器  
+    $('#upload').on('click', function() {  
+        $('#fileToUpload').click();  
+    });
+	
 	// 初始化插件
 	$("#uploadImg").zyUpload({
 		width            :   "660px",                 // 宽度
