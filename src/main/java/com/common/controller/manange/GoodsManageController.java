@@ -26,14 +26,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.common.command.GoodsCommand;
+import com.common.command.NoticeCommand;
 import com.common.constant.ManageUrl;
 import com.common.constant.StatusCode;
 import com.common.core.controller.BaseController;
 import com.common.pojo.Category;
 import com.common.pojo.Goods;
+import com.common.pojo.Notice;
 import com.common.service.base.UserService;
 import com.common.service.manage.CategoryManageService;
 import com.common.service.manage.GoodsManageService;
+import com.common.util.FileAddress;
 import com.common.util.NewDate;
 import com.common.util.UploadHelper;
 
@@ -113,6 +116,11 @@ public class GoodsManageController extends BaseController{
     	String coverImg = UploadHelper.uploadFile(request, "img", "goods");
     	String creator = userService.getCurrentUser().getUsername();
     	goodsManageService.createGoods(goodsCommand, creator, coverImg);
+    	try {
+			logger.info("删除图片结果{}", UploadHelper.deleteByFileName(coverImg));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     	return "redirect:/manage/goods/list";
     }
 
@@ -129,11 +137,47 @@ public class GoodsManageController extends BaseController{
 		if (goods == null) {
 			return "redirect:/manage/goods/list";
 		}
+		List<Category> listCategory = categoryManageService.getAllCategory();
+		model.addAttribute("listCategory", listCategory);
 		model.addAttribute("id", id);
 		model.addAttribute("goods", goods);
 		return "goods/edit";
 	}
     
+	@RequestMapping(value = ManageUrl.GOODS_EDIT, method = RequestMethod.POST)
+    //@RequiresPermissions("banner:edit")
+	public String edit(Model model, HttpServletRequest request, @PathVariable Long id, 
+			@ModelAttribute GoodsCommand goodsCommand){
+		
+		if (goodsCommand.getName() == null || "".equals(goodsCommand.getName())) {
+    		model.addAttribute("error", "商品名称不能为空，已恢复至修改之前状态！");
+    		return editForm(model,id);
+    	}
+    	
+    	if (goodsCommand.getPrice() == null || goodsCommand.getPrice() == 0) {
+    		model.addAttribute("error", "商品价格不能为空，已恢复至修改之前状态！");
+    		return editForm(model,id);
+    	}
+    	
+    	if (goodsCommand.getCategoryId() == null || goodsCommand.getCategoryId() == 0L) {
+    		model.addAttribute("error", "商品类别不能为空，已恢复至修改之前状态！");
+    		return editForm(model,id);
+    	}
+		
+		Goods goods = goodsManageService.getGoods(id);
+		if (goods == null) {
+			return "redirect:/manage/goods/list";
+		}
+		
+		String coverImg = UploadHelper.uploadFile(request, "img", "goods");
+		if (coverImg != null && !"".equals(coverImg)) {
+			goods.setCoverImg(coverImg);
+		}
+		goods.setCreator(userService.getCurrentUser().getUsername());
+		goodsManageService.updateGoods(goods, goodsCommand);
+		return "redirect:/manage/goods/list";
+	}
+	
 	/**
      * 查看商品
      * @param model

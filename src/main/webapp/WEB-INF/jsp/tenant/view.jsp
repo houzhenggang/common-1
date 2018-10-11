@@ -26,7 +26,7 @@
 	                            <img id="img"
 								<c:choose>          
 									<c:when test="${not empty tenant.photo}"> 
-									src="${tenant.photo}"
+									src="${ctx}/${tenant.photo}"
 									</c:when> 
 									<c:otherwise>src=""</c:otherwise>
 								</c:choose> />

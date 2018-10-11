@@ -43,7 +43,7 @@ import com.common.util.UploadHelper;
  * @author Administrator
  * @date 2018年5月23日 下午4:20:53
  * @version V1.0.0 description：
- * 有问题 弃用
+ * 
  */
 @Controller
 @RequestMapping("/common")

@@ -29,7 +29,7 @@
 	                            <img id="img"
 								<c:choose>          
 									<c:when test="${not empty notice.imgPath}"> 
-									src="${notice.imgPath}"
+									src="${ctx}/${notice.imgPath}"
 									</c:when> 
 									<c:otherwise>src=""</c:otherwise>
 								</c:choose> />

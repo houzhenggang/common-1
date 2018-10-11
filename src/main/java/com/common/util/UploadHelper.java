@@ -82,7 +82,8 @@ public class UploadHelper {
                 // 返回链接地址
                 result = userType + File.separator + childFolder + File.separator + childChildFolder
                         + File.separator + folderName;
-                return FileAddress.UPLOAD_URL + result;
+                //return FileAddress.UPLOAD_URL + result;
+                return result;
             } catch (Exception e) {
                 // 删除已上传的文件
                 newFile.delete();
@@ -137,7 +138,8 @@ public class UploadHelper {
                 // 返回链接地址
                 result = userType + File.separator + childFolder + File.separator + childChildFolder
                         + File.separator + folderName;
-                return FileAddress.UPLOAD_URL + result;
+                //return FileAddress.UPLOAD_URL + result;
+                return result;
             } catch (Exception e) {
                 // 删除已上传的文件
                 newFile.delete();
@@ -220,6 +222,7 @@ public class UploadHelper {
                 // 返回链接地址
                 result = userType + File.separator + childFolder + File.separator + childChildFolder
                         + File.separator + folderName;
+                //return FileAddress.UPLOAD_URL + result;
                 return result;
             } catch (Exception e) {
                 // 删除已上传的文件
@@ -320,6 +323,27 @@ public class UploadHelper {
     }
     
     /**
+     * 删除单个文件(文件全名)
+     * 
+     * @param sPath
+     *            被删除文件的文件名
+     * @return 单个文件删除成功返回true，否则返回false
+     * @throws Exception 
+     */
+    public static boolean deleteByFileName(String fileName) throws Exception {
+    	String tempPath = getAttachSavePath();
+    	String sPath = fileName.substring(FileAddress.UPLOAD_URL.length());
+        boolean flag = false;
+        File file = new File(tempPath + File.separator + sPath);
+        // 路径为文件且不为空则进行删除
+        if (file.isFile() && file.exists()) {
+            file.delete();
+            flag = true;
+        }
+        return flag;
+    }
+    
+    /**
      * 根据路径删除指定的目录或文件，无论存在与否
      * 
      * @param sPath
@@ -347,15 +371,17 @@ public class UploadHelper {
     }
     
     /**
-     * 删除单个文件
+     * 删除单个文件(只有部分路径)
      * 
      * @param sPath
      *            被删除文件的文件名
      * @return 单个文件删除成功返回true，否则返回false
+     * @throws Exception 
      */
-    public boolean deleteFile(String sPath) {
+    public static boolean deleteFile(String sPath) throws Exception {
+    	String tempPath = getAttachSavePath();
         boolean flag = false;
-        File file = new File(sPath);
+        File file = new File(tempPath + File.separator + sPath);
         // 路径为文件且不为空则进行删除
         if (file.isFile() && file.exists()) {
             file.delete();
