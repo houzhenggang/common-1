@@ -30,12 +30,14 @@ import com.common.command.NoticeCommand;
 import com.common.constant.ManageUrl;
 import com.common.constant.StatusCode;
 import com.common.core.controller.BaseController;
+import com.common.dto.GoodsDTO;
 import com.common.pojo.Category;
 import com.common.pojo.Goods;
 import com.common.pojo.Notice;
 import com.common.service.base.UserService;
 import com.common.service.manage.CategoryManageService;
 import com.common.service.manage.GoodsManageService;
+import com.common.transfer.GoodsTransfer;
 import com.common.util.FileAddress;
 import com.common.util.NewDate;
 import com.common.util.UploadHelper;
@@ -137,10 +139,11 @@ public class GoodsManageController extends BaseController{
 		if (goods == null) {
 			return "redirect:/manage/goods/list";
 		}
+		GoodsDTO goodsDTO = GoodsTransfer.transferGoodsDTO(goods);
 		List<Category> listCategory = categoryManageService.getAllCategory();
 		model.addAttribute("listCategory", listCategory);
 		model.addAttribute("id", id);
-		model.addAttribute("goods", goods);
+		model.addAttribute("goods", goodsDTO);
 		return "goods/edit";
 	}
     
@@ -191,7 +194,10 @@ public class GoodsManageController extends BaseController{
 		if (goods == null) {
 			return "redirect:/manage/goods/list";
 		}
-		model.addAttribute("goods", goods);
+		GoodsDTO goodsDTO = GoodsTransfer.transferGoodsDTO(goods);
+		List<Category> listCategory = categoryManageService.getAllCategory();
+		model.addAttribute("listCategory", listCategory);
+		model.addAttribute("goods", goodsDTO);
 		return "goods/view";
 	}	
 	

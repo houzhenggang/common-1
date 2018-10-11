@@ -43,7 +43,7 @@
 	
 	                </div>
 	                <div class="add-button" style="margin-bottom:50px">
-		                <input type="button" onclick="document.location.href='${ctx}/manage/notice/list'" value="取 消" />
+		                <input type="button" onclick="document.location.href='${ctx}/manage/notice/list'" value="返 回" />
 	                </div>
 	            </div>
 	

@@ -68,6 +68,18 @@
 	                    <p>商品详情:</p>
 	                    <textarea name="detail">${goods.detail}</textarea>
 	                </div>
+	                <div class="upload-img-div">
+	                	<div class="shop-goods-pic">
+	                        <p>详情图片:</p>
+			                <c:forEach items="${goods.detailImgList}" var="detailImg" varStatus="vs">
+	                        <div id="divImgPreview">
+	                            <div>
+	                            	<img src="${ctx}/${detailImg}" />
+	                            </div>
+	                        </div>
+				            </c:forEach>
+	                    </div>
+	                </div>
 	                <div class="bug-input input900">
 	                <p>详情图片:</p><input type="hidden" id="detailImgs" name="detailImgs" value="${goods.detailImgs}" />
 	                </div>
