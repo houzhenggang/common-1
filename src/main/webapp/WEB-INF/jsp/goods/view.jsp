@@ -48,7 +48,7 @@
 	                    <div class="shop-goods-pic">
 	                        <p>商品封面:</p>
 	                        <div id="divImgPreview">
-	                            <p>图片规格360×460px</p>
+	                            <p>图片规格690×1033px</p>
 	                            <div>
 	                            <img id="img" 
 	                            <c:choose>          
@@ -68,13 +68,13 @@
 	                <div class="upload-img-div">
 	                	<div class="shop-goods-pic">
 	                        <p>详情图片:</p>
+	                        <div id="divImgPreview" style="margin-left:100px;">
 			                <c:forEach items="${goods.detailImgList}" var="detailImg" varStatus="vs">
-	                        <div id="divImgPreview">
-	                            <div>
+	                            <div style="float:left;margin:-20px 60px 40px 0;">
 	                            	<img src="${ctx}/${detailImg}" />
 	                            </div>
-	                        </div>
 				            </c:forEach>
+	                        </div>
 	                    </div>
 	                </div>
 	                <div class="add-button" style="margin-bottom:50px">

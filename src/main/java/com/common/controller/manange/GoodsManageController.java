@@ -118,11 +118,11 @@ public class GoodsManageController extends BaseController{
     	String coverImg = UploadHelper.uploadFile(request, "img", "goods");
     	String creator = userService.getCurrentUser().getUsername();
     	goodsManageService.createGoods(goodsCommand, creator, coverImg);
-    	try {
+    	/*try {
 			logger.info("删除图片结果{}", UploadHelper.deleteByFileName(coverImg));
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
     	return "redirect:/manage/goods/list";
     }
 

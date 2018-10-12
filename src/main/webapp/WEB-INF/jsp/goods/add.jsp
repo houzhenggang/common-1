@@ -48,7 +48,7 @@
 	                    <div class="shop-goods-pic">
 	                        <p>商品封面:</p>
 	                        <div id="divImgPreview">
-	                            <p>图片规格360×460px</p>
+	                            <p>图片规格690×1033px</p>
 	                            <div>
 	                            <img id="img" src="" />
 	                            </div>
