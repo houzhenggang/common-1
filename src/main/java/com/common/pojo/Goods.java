@@ -1,3 +1,10 @@
+/*
+ * @(#) Goods.java 2018年10月13日
+ *
+ * Copyright (c), 2017 赵名阳（shining everyday.），
+ * 
+ * 著作权人保留一切权利，任何使用需经授权。
+*/
 package com.common.pojo;
 
 import com.common.core.model.BaseObject;
@@ -32,8 +39,8 @@ public class Goods extends BaseObject{
     //材质
     private String material;
 
-    //风格
-    private String style;
+    //风格类型ID
+    private Long styleId;
 
     //环保等级
     private String envLevel;
@@ -126,12 +133,12 @@ public class Goods extends BaseObject{
         this.material = material == null ? null : material.trim();
     }
 
-    public String getStyle() {
-        return style;
+    public Long getStyleId() {
+        return styleId;
     }
 
-    public void setStyle(String style) {
-        this.style = style == null ? null : style.trim();
+    public void setStyleId(Long styleId) {
+        this.styleId = styleId;
     }
 
     public String getEnvLevel() {

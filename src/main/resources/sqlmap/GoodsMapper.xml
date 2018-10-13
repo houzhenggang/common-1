@@ -10,7 +10,7 @@
     <result column="colors" property="colors" jdbcType="VARCHAR" />
     <result column="longness" property="longness" jdbcType="VARCHAR" />
     <result column="material" property="material" jdbcType="VARCHAR" />
-    <result column="style" property="style" jdbcType="VARCHAR" />
+    <result column="style_id" property="styleId" jdbcType="BIGINT" />
     <result column="env_level" property="envLevel" jdbcType="VARCHAR" />
     <result column="category_id" property="categoryId" jdbcType="BIGINT" />
     <result column="cover_img" property="coverImg" jdbcType="VARCHAR" />
@@ -22,8 +22,8 @@
     <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, code, name, keywords, price, colors, longness, material, style, env_level, category_id, 
-    cover_img, detail, detail_imgs, status, creator, create_time, update_time
+    id, code, name, keywords, price, colors, longness, material, style_id, env_level, 
+    category_id, cover_img, detail, detail_imgs, status, creator, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -38,14 +38,14 @@
   <insert id="insert" parameterType="com.common.pojo.Goods" >
     insert into goods (id, code, name, 
       keywords, price, colors, 
-      longness, material, style, 
+      longness, material, style_id, 
       env_level, category_id, cover_img, 
       detail, detail_imgs, status, 
       creator, create_time, update_time
       )
     values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{keywords,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, #{colors,jdbcType=VARCHAR}, 
-      #{longness,jdbcType=VARCHAR}, #{material,jdbcType=VARCHAR}, #{style,jdbcType=VARCHAR}, 
+      #{longness,jdbcType=VARCHAR}, #{material,jdbcType=VARCHAR}, #{styleId,jdbcType=BIGINT}, 
       #{envLevel,jdbcType=VARCHAR}, #{categoryId,jdbcType=BIGINT}, #{coverImg,jdbcType=VARCHAR}, 
       #{detail,jdbcType=VARCHAR}, #{detailImgs,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}
@@ -78,8 +78,8 @@
       <if test="material != null" >
         material,
       </if>
-      <if test="style != null" >
-        style,
+      <if test="styleId != null" >
+        style_id,
       </if>
       <if test="envLevel != null" >
         env_level,
@@ -134,8 +134,8 @@
       <if test="material != null" >
         #{material,jdbcType=VARCHAR},
       </if>
-      <if test="style != null" >
-        #{style,jdbcType=VARCHAR},
+      <if test="styleId != null" >
+        #{styleId,jdbcType=BIGINT},
       </if>
       <if test="envLevel != null" >
         #{envLevel,jdbcType=VARCHAR},
@@ -190,8 +190,8 @@
       <if test="material != null" >
         material = #{material,jdbcType=VARCHAR},
       </if>
-      <if test="style != null" >
-        style = #{style,jdbcType=VARCHAR},
+      <if test="styleId != null" >
+        style_id = #{styleId,jdbcType=BIGINT},
       </if>
       <if test="envLevel != null" >
         env_level = #{envLevel,jdbcType=VARCHAR},
@@ -232,7 +232,7 @@
       colors = #{colors,jdbcType=VARCHAR},
       longness = #{longness,jdbcType=VARCHAR},
       material = #{material,jdbcType=VARCHAR},
-      style = #{style,jdbcType=VARCHAR},
+      style_id = #{styleId,jdbcType=BIGINT},
       env_level = #{envLevel,jdbcType=VARCHAR},
       category_id = #{categoryId,jdbcType=BIGINT},
       cover_img = #{coverImg,jdbcType=VARCHAR},

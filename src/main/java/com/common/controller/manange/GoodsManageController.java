@@ -34,9 +34,11 @@ import com.common.dto.GoodsDTO;
 import com.common.pojo.Category;
 import com.common.pojo.Goods;
 import com.common.pojo.Notice;
+import com.common.pojo.Style;
 import com.common.service.base.UserService;
 import com.common.service.manage.CategoryManageService;
 import com.common.service.manage.GoodsManageService;
+import com.common.service.manage.StyleManageService;
 import com.common.transfer.GoodsTransfer;
 import com.common.util.FileAddress;
 import com.common.util.NewDate;
@@ -59,6 +61,9 @@ public class GoodsManageController extends BaseController{
 	
 	@Autowired
 	private CategoryManageService categoryManageService;
+	
+	@Autowired
+	private StyleManageService styleManageService;
 	
 	@Autowired
 	private UserService userService;
@@ -87,7 +92,9 @@ public class GoodsManageController extends BaseController{
     //@RequiresPermissions("notice:add")
 	public String addForm(Model model, @ModelAttribute GoodsCommand goodsCommand){
 		List<Category> listCategory = categoryManageService.getAllCategory();
+		List<Style> listStyle = styleManageService.getAllStyle();
 		model.addAttribute("listCategory", listCategory);
+		model.addAttribute("listStyle", listStyle);
 		return "goods/add";
 	}
 
@@ -141,7 +148,9 @@ public class GoodsManageController extends BaseController{
 		}
 		GoodsDTO goodsDTO = GoodsTransfer.transferGoodsDTO(goods);
 		List<Category> listCategory = categoryManageService.getAllCategory();
+		List<Style> listStyle = styleManageService.getAllStyle();
 		model.addAttribute("listCategory", listCategory);
+		model.addAttribute("listStyle", listStyle);
 		model.addAttribute("id", id);
 		model.addAttribute("goods", goodsDTO);
 		return "goods/edit";
@@ -196,7 +205,9 @@ public class GoodsManageController extends BaseController{
 		}
 		GoodsDTO goodsDTO = GoodsTransfer.transferGoodsDTO(goods);
 		List<Category> listCategory = categoryManageService.getAllCategory();
+		List<Style> listStyle = styleManageService.getAllStyle();
 		model.addAttribute("listCategory", listCategory);
+		model.addAttribute("listStyle", listStyle);
 		model.addAttribute("goods", goodsDTO);
 		return "goods/view";
 	}	

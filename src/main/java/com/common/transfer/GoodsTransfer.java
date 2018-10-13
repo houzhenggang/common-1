@@ -29,7 +29,7 @@ public class GoodsTransfer {
 		dto.setColorList(CommonTransferUtil.StringToList(goods.getColors()));
 		dto.setLongness(goods.getLongness());
 		dto.setMaterial(goods.getMaterial());
-		dto.setStyle(goods.getStyle());
+		dto.setStyleId(goods.getStyleId());
 		dto.setEnvLevel(goods.getEnvLevel());
 		dto.setCategoryId(goods.getCategoryId());
 		dto.setCoverImg(goods.getCoverImg());

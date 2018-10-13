@@ -50,7 +50,7 @@ public class GoodsDTO extends BaseObject{
     private String material;
 
     //风格
-    private String style;
+    private Long styleId;
 
     //环保等级
     private String envLevel;
@@ -162,12 +162,12 @@ public class GoodsDTO extends BaseObject{
 		this.material = material;
 	}
 
-	public String getStyle() {
-		return style;
+	public Long getStyleId() {
+		return styleId;
 	}
 
-	public void setStyle(String style) {
-		this.style = style;
+	public void setStyleId(Long styleId) {
+		this.styleId = styleId;
 	}
 
 	public String getEnvLevel() {

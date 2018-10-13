@@ -31,9 +31,14 @@
 	                <div class="bug-input input310">
 	                <p>商品材质:</p><input type="text" name="material" value="${goodsCommand.material}" />
 	                </div>
-	                <div class="bug-input input310">
-	                <p>商品风格:</p><input type="text" name="style" value="${goodsCommand.style}" />
-	                </div>
+	                <div class="bug-input select310">
+	                    <p>风格类型:</p>
+	                    <select name="styleId"> 
+	                    	<c:forEach items="${listStyle}" var="style" varStatus="vs">
+								<option value="${style.id}" <c:if test="${goodsCommand.styleId == style.id}">selected = "selected"</c:if> >${style.name}</option> 			
+				            </c:forEach>
+						</select>  
+					</div>
 	                <div class="bug-input input310">
 	                <p>环保等级:</p><input type="text" name="envLevel" value="${goodsCommand.envLevel}" />
 	                </div>

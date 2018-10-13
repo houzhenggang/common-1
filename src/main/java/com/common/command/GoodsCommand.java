@@ -41,8 +41,8 @@ public class GoodsCommand extends BaseObject {
 	// 材质
 	private String material;
 
-	// 风格
-	private String style;
+	//风格类型ID
+    private Long styleId;
 
 	// 环保等级
 	private String envLevel;
@@ -104,12 +104,12 @@ public class GoodsCommand extends BaseObject {
 		this.material = material;
 	}
 
-	public String getStyle() {
-		return style;
+	public Long getStyleId() {
+		return styleId;
 	}
 
-	public void setStyle(String style) {
-		this.style = style;
+	public void setStyleId(Long styleId) {
+		this.styleId = styleId;
 	}
 
 	public String getEnvLevel() {
