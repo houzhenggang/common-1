@@ -26,9 +26,9 @@
                         <shiro:hasPermission name="permission:manage">
                         <li class="manager"><a href="${ctx}/base/permission/list">权限管理</a></li>
                         </shiro:hasPermission>
-                        <shiro:hasPermission name="exchangeType:manage">
-                        <li class="manager"><a href="${ctx}/base/">配置管理</a></li>
-                        </shiro:hasPermission>
+                        <%-- <shiro:hasPermission name="exchangeType:manage"> --%>
+                        <li class="manager"><a href="${ctx}/manage/notice/list">配置管理</a></li>
+                        <%-- </shiro:hasPermission> --%>
                     </ul>
                 </div>
 

@@ -12,9 +12,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.common.command.CategoryCommand;
 import com.common.dao.CategoryDAO;
 import com.common.pojo.Category;
 import com.common.service.manage.CategoryManageService;
+import com.common.util.NewDate;
 
 /**
  *
@@ -31,8 +33,40 @@ public class CategoryManageServiceImpl implements CategoryManageService {
 	private CategoryDAO categoryDAO;
 	
 	@Override
+	public Category getCategory(Long id) {
+		return categoryDAO.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public void createCategory(CategoryCommand categoryCommand, String creator) {
+		Category category = new Category();
+		category.setName(categoryCommand.getName());
+		category.setCreator(creator);
+		category.setCreateTime(NewDate.getDateTime());
+		category.setUpdateTime(category.getCreateTime());
+		categoryDAO.insertSelective(category);
+	}
+
+	@Override
+	public void deleteCategory(Long id) {
+		categoryDAO.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public void updateCategory(Category category) {
+		categoryDAO.updateByPrimaryKey(category);
+	}
+
+	@Override
+	public void updateCategory(Category category, CategoryCommand categoryCommand) {
+		category.setName(categoryCommand.getName());
+		category.setUpdateTime(NewDate.getDateTime());
+		categoryDAO.updateByPrimaryKeySelective(category);
+	}
+
+	@Override
 	public List<Category> getAllCategory() {
 		return categoryDAO.getAllCategory();
 	}
-
+	
 }

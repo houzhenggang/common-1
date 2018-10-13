@@ -9,6 +9,7 @@ package com.common.service.manage;
 
 import java.util.List;
 
+import com.common.command.CategoryCommand;
 import com.common.pojo.Category;
 
 /**
@@ -20,7 +21,16 @@ import com.common.pojo.Category;
  * 
  */
 public interface CategoryManageService {
-
-	List<Category> getAllCategory();
 	
+	Category getCategory(Long id);
+
+    void createCategory(CategoryCommand categoryCommand, String creator);
+
+    void deleteCategory(Long id);
+
+    void updateCategory(Category notice);
+    
+    void updateCategory(Category notice, CategoryCommand categoryCommand);
+	
+    List<Category> getAllCategory();
 }

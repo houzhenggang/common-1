@@ -41,4 +41,18 @@ public interface ManageUrl {
 	String GOODS_DELETE = "/goods/delete/{id}"; //删除商品
 	String GOODS_CHANGE = "/goods/change/{id}"; //上架/下架商品
 	
+	/***************************** 商品类别模块  **********************************/
+	String CATEGORY_LIST = "/category/list"; //商品类别列表
+	String CATEGORY_ADD = "/category/add"; //新增商品类别
+	String CATEGORY_EDIT = "/category/edit/{id}"; //修改商品类别
+	String CATEGORY_VIEW = "/category/view/{id}"; //查看商品类别
+	String CATEGORY_DELETE = "/category/delete/{id}"; //删除商品类别
+	
+	/***************************** 风格类型模块  **********************************/
+	String STYLE_LIST = "/style/list"; //风格类型列表
+	String STYLE_ADD = "/style/add"; //新增商品类别
+	String STYLE_EDIT = "/style/edit/{id}"; //修改风格类型
+	String STYLE_VIEW = "/style/view/{id}"; //查看风格类型
+	String STYLE_DELETE = "/style/delete/{id}"; //删除风格类型
+	
 }

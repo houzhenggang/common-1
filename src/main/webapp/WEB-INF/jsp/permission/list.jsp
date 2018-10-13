@@ -24,14 +24,15 @@
                         <li class="manager"><a href="${ctx}/base/user/list">管理员</a></li>
                         </shiro:hasPermission>
                         <shiro:hasPermission name="role:manage">
-                        <li class="manager"><a href="${ctx}/base/role/lsit">角色管理</a></li>
+                        <li class="manager"><a href="${ctx}/base/role/list">角色管理</a></li>
                         </shiro:hasPermission>
                         <shiro:hasPermission name="permission:manage">
                         <li class="manager on"><a href="${ctx}/base/permission/list">权限管理</a></li>
                         </shiro:hasPermission>
-                        <shiro:hasPermission name="exchangeType:manage">
-                        <li class="manager"><a href="${ctx}/base/exchangeType/list">配置管理</a></li>
-                        </shiro:hasPermission>
+                        <%-- <shiro:hasPermission name="notice:manage"> --%>
+                        <li class="manager"><a href="${ctx}/manage/notice/list">配置管理</a></li>
+                        <%-- </shiro:hasPermission> --%>
+                        
                     </ul>
                 </div>
                 <table>

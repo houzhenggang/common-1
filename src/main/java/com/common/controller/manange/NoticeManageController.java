@@ -174,7 +174,7 @@ public class NoticeManageController extends BaseController{
 	  */
 	@RequestMapping(value = ManageUrl.NOTICE_DELETE, method = RequestMethod.GET)
 	//@RequiresPermissions("banner:delete")
-	public String delete(Model model,@PathVariable Long id){
+	public String delete(Model model, @PathVariable Long id){
 		Notice notice = noticeManageService.getNotice(id);
 		if (notice == null) {
 			return "redirect:/manage/notice/list";
